@@ -992,6 +992,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    问求十一诫
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1028,7 +1035,25 @@
 <div class="admonition tip">
 <p class="admonition-title">学会解决问题</p>
 <p>无论是学习《问题求解》还是在计算机领域继续学习，解决问题的能力将是重要的。</p>
-<p>作为信息爆炸时代的学科，计算机领域</p>
+<p>作为信息爆炸时代的学科，计算机学科的知识浩如烟海，细节不可计数。在学习计算机知识，进行计算机实践的过程中，你可能会遇到包括但不限于环境配置、运行报错、运行结果不符预期等各种问题。</p>
+<p>幸运的是，你的前辈们也同样遇到了这些问题。他们借助信息时代的丰富工具为我们可能遇到的各种问题提供了完善的解决方案与经验，你需要学会妥善利用这些工具来解决问题。</p>
+<p>如果把「学会在计算机领域解决问题」展开来讲将是个宏大的话题。因此我们简要总结了几点，权当抛砖引玉：</p>
+<ul>
+<li><strong>机器永远是对的</strong>。在 80、90 年代硬件 bug 也许还常见于终端用户/程序员的视野（这里的<strong>终端</strong>是指 end 而非 terminal）。但在 2023 年的当下已经少之又少，更不是我们这个阶段能够碰到的情况。因此，在程序在任何阶段出现问题时，请首先假定是自己的程序出现了 bug。<em>注意：操作系统属于软件而不是机器。</em></li>
+<li><strong>框架/软件/文档通常是对的</strong>。你们将使用的框架/软件/文档都是经过大量测试以证明其正确性的。虽然还可能存在隐含的漏洞，但是与之相比你操作失误的可能性显然更大 <del>（如果你是天才，当我没说）</del> 。因此，当你使用这些框架/软件/文档时，如果出现了问题，也请预先假设是自己的问题，并在<strong>尝试解决无果</strong>后再尝试向开发者提 issue 或向我们报告错误。<del>（当然，我们自行开发的框架/软件/文档错误的概率更高一些）</del></li>
+<li><strong>不要静态调试</strong>。除非在笔试的环境下，请不要仅盯着代码看来试图找到 bug，利用以下的技巧来<strong>在计算机本身的辅助下</strong>找到 bug。</li>
+<li><strong>利用程序日志</strong>。如果你在使用程序的时候出现了问题，请仔细观察该程序输出的日志。大部分情况下，程序日志本身就已经包含了问题描述。程序日志往往用英语写成，<strong>请不要把任何非中文报错当作乱码</strong>。在许多情况下，初学者连诸如 <code>Permission Denied</code>，<code>No such file or directory</code> 和 <code>Command not found</code> 这种极为常见的报错都不能理解。这是我们不希望看到的。</li>
+<li><strong>复现、跟踪、缩小和定位问题</strong>。在计算机中，寻找问题的一个关键方法是「重新跟着程序运行一次」（复现和跟踪）。计算机和计算机程序的本质是<a href="https://zh.wikipedia.org/wiki/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA">有限状态机</a>。因此，如果能确实理解程序运行的过程，并理解程序运行过程中的状态，就可以找到出现问题（状态出现异常）的地方。做到这一点的方法有很多，最常用的是<strong>输出程序日志</strong>和<strong>使用跟踪器或调试器</strong>（GDB 等）。</li>
+<li><strong>学会使用大数据工具（搜索引擎/大语言模型）</strong>。这也许是 STFW (Search The Fucking Web) 的文雅和新潮点的说法。总而言之，当你看到程序输出了你不太懂的 Log，或在调试过程中遇到了不理解的技术细节，都可以上网搜索/向大语言模型提问，这往往能事半功倍。</li>
+<li><strong><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md">学会提问</a></strong>。在你发现以上的方法都不好使以后，可以向周围的人提问。你提问的对象可以是你身边的大佬，也可以是助教老师，还可以是网络水友。但在提问过程中始终记住：<em>解决你的问题并不是他们的义务。</em>
+世界上有很多好人，但希望大家不要过度消费他人的善意。<strong>请你在提问时给被提问者解决问题提供你力所能及的方便，也不要问自己没有尝试寻找过答案的问题。</strong></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">过犹不及</p>
+<p><strong>我们鼓励同学们深挖课程中遇到的知识点和技能点，但请仅在学有余力的情况下探索课外知识。我们希望大家以完成课程任务为最优先，尤其是基础较为薄弱的同学</strong>。</p>
+<p>「过犹不及」的道理不仅在课程学习过程中使用，在程序设计时更是一项重要的设计思想（<a href="https://www.laws-of-software.com/laws/knuth/">「不作过早优化」</a>）。</p>
+<p><em>计算机世界的海洋广阔无边，请在你没把握战胜暴风雨之前暂且在岸边巡弋，粗略风光。</em></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">遵守学术诚信</p>
@@ -1044,6 +1069,62 @@
 <p>如果你不愿意服从助教团队的决定，可以进一步向任课老师或教务处申诉。</p>
 <p><em>虽然我们不愿见到，但<b>如果</b>你已经铤而走险抄袭了或者动了抄袭的念头，我们希望你能主动和我们聊聊</em>。</p>
 </div>
+<h2 id="_4">问求十一诫</h2>
+<p>这个表格引用和修改自 2021 级《问题求解》助教朱宇博写的 DO &amp; DON'T。</p>
+<table>
+<thead>
+<tr>
+<th>DO</th>
+<th>DON'T</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://integrity.mit.edu">遵守学术诚信，严禁抄袭</a></td>
+<td><s><code>Ctrl + C</code> &amp;&amp; <code>Ctrl + V</code></s></td>
+</tr>
+<tr>
+<td>敢于提问，<a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md">用聪明的方式提问</a></td>
+<td><s><a href="https://github.com/tangx/Stop-Ask-Questions-The-Stupid-Ways/blob/master/README.md#%E5%AD%A6%E4%BC%9A%E6%8F%8F%E8%BF%B0%E9%97%AE%E9%A2%98">像弱智一样提问</a></s>（你可千万不能变成那样）</td>
+</tr>
+<tr>
+<td>对题目/测试数据有问题，遇到难以解决的困惑提问</td>
+<td><s>：助教，我这题为什么没过</s>（助教不会帮你debug）</td>
+</tr>
+<tr>
+<td>遇到问题先自己尝试解决</td>
+<td><s>把别人当<a href="https://zh.wikipedia.org/zh-cn/%E9%A0%90%E8%A8%80%E6%A9%9F">预言机</a></s></td>
+</tr>
+<tr>
+<td>规划好每项作业的时间</td>
+<td><s>DDL是第一生产力</s></td>
+</tr>
+<tr>
+<td>充分理解题目意思再动手</td>
+<td><s>题目还没读完就开始写代码</s></td>
+</tr>
+<tr>
+<td>学习优秀的代码风格（如 IDE 内置的语法规范）</td>
+<td><s>题：毛的数量  你: <code>int mao</code>;</s>(推荐英文小驼峰式命名)</td>
+</tr>
+<tr>
+<td>理解自己写出来的代码</td>
+<td><s>It doesn't work, why? &lt;=&gt; It works, why?</s></td>
+</tr>
+<tr>
+<td>自己设计用例测试程序</td>
+<td><s>面向Wrong Answer编程</s></td>
+</tr>
+<tr>
+<td>对自己的眼睛好点</td>
+<td><s>用超迷你的宋体写代码</s></td>
+</tr>
+<tr>
+<td>写代码时注意代码的设计，最后和 STD 对比</td>
+<td><s>AC了就不管了，自己代码多丑、多冗长都不管</s></td>
+</tr>
+</tbody>
+</table>
 <div class="footnote">
 <hr />
 <ol>
