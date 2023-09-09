@@ -9,13 +9,17 @@
       
       
       
+        <link rel="prev" href="../program/">
+      
+      
+        <link rel="next" href="../learn-more/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
-        <title>Windows - 2023 级问题求解（程设部分）</title>
+        <title>理论环境配置 - 2023 级问题求解（程设部分）</title>
       
     
     
@@ -66,6 +70,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -97,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Windows
+              理论环境配置
             
           </span>
         </div>
@@ -205,13 +214,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
         指南
       </a>
     </li>
@@ -437,19 +448,23 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
         
           
             
+          
+        
           
         
           
@@ -475,7 +490,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           指南
@@ -544,10 +559,85 @@
               
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          理论环境配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        理论环境配置
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#latex" class="md-nav__link">
+    Latex
+  </a>
+  
+    <nav class="md-nav" aria-label="Latex">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tex-live" class="md-nav__link">
+    安装 Tex Live
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vscode" class="md-nav__link">
+    结合 VSCode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
   
     <li class="md-nav__item">
       <a href="../learn-more/" class="md-nav__link">
-        学习资源推荐
+        资源聚集处
       </a>
     </li>
   
@@ -956,6 +1046,43 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#latex" class="md-nav__link">
+    Latex
+  </a>
+  
+    <nav class="md-nav" aria-label="Latex">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tex-live" class="md-nav__link">
+    安装 Tex Live
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vscode" class="md-nav__link">
+    结合 VSCode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -973,9 +1100,40 @@
   
 
 
-  <h1>Windows</h1>
-
-
+<h1 id="_1">理论环境配置</h1>
+<p>本页面会提供一些理论部分需要用到的编程环境的配置指南。</p>
+<p><strong>本指南是非官方的，仅供参考。</strong></p>
+<p>本页面的所有环境配置都基于 Windows 的 MSYS2 环境，在<a href="../quickstart/#msys2">上手指南</a>中已经介绍过。</p>
+<div class="admonition info">
+<p class="admonition-title">Linux 用户请注意</p>
+<p>请使用你所使用的发行版的包管理器安装这些软件/工具。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">MacOS 用户请注意</p>
+<p>也许你可以尝试一下 <a href="https://brew.sh/">homebrew</a>？笔者真的不了解 MacOS。<del>如果你实在想要 Mac 的配置教程，可以 V 我一台 Macbook pro。</del></p>
+</div>
+<p>其实本页提到的绝大部分包你可以在 <a href="https://packages.msys2.org/">MSYS2 包列表</a>找到，而不用我来列出。</p>
+<h2 id="latex">Latex</h2>
+<h3 id="tex-live">安装 Tex Live</h3>
+<div class="highlight"><pre><span></span><code>pacman<span class="w"> </span>-S<span class="w"> </span>mingw-w64-x86_64-texlive-full
+</code></pre></div>
+<p>要验证是否安装成功，输入 <code>xelatex --version</code>（后面同理，不再重复）。</p>
+<p>此后你就可以通过 <code>xelatex example.tex</code> 来编译任何 <code>.tex</code> 文件啦。</p>
+<details class="question" open="open">
+<summary>为什么要用 xelatex</summary>
+<p>因为它对中文的支持最好，如果换用其他的编译器可能会在你输入中文的时候出现编译错误。</p>
+</details>
+<h3 id="vscode">结合 VSCode</h3>
+<p>现在你可以使用 Tex Live 自带的 IDE 来进行编辑和编译 <code>.tex</code> 文件。但我不推荐你这样做，而是使用安装了 Latex Workshop 拓展的 VSCode 来进行编辑和编译。</p>
+<p>在 VSCode 中安装该拓展后，你需要对其进行配置。</p>
+<p>在 <code>Settings.json</code> 中，增加一个 <code>tool</code>：</p>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<details class="question" open="open">
+<summary>如何打开这个文件？</summary>
+<p>按 <code>Ctrl+Shift+P</code> 打开命令面板，输入 Preferences: Open User Settings (JSON)，回车。</p>
+<p>注意：<em>讲义不会在许多地方重复这种细节。如果你发现讲义提到的操作细节你不太会，请首先在网上搜索。</em></p>
+</details>
 
 
 
