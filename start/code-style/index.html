@@ -70,6 +70,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -534,10 +539,50 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          代码风格
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         代码风格
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    代码格式化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    英文小驼峰式命名
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -549,10 +594,40 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../program/" class="md-nav__link">
-        程序设计基础
-      </a>
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../program/">程序设计基础</a>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          程序设计基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -988,6 +1063,30 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    代码格式化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    英文小驼峰式命名
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1005,9 +1104,29 @@
   
 
 
-  <h1>代码风格</h1>
-
-
+<h1 id="_1">代码风格</h1>
+<p>致谢：此页面引自 2021 级问题求解助教朱宇博。</p>
+<h2 id="_2">代码格式化</h2>
+<p>我们要求，你提交上来的代码，<strong>要么</strong>经过IDE的自动代码格式化，<strong>要么</strong>你逐一检查代码细节。</p>
+<p>推荐IDE的自动格式化是因为，你看了格式化后的代码，你就会知道标准的代码长什么样。但请<strong>不要依靠自动格式化功能</strong>，而是应该在写的时候就注意细节，每次完成格式化后看看变化，然后恍然大悟：噢，原来这里我写的时候没有注意到。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 在二元符前后需要有空格，注意代码缩进，这些在自动格式化功能中均会被修复</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1"> // include后需要留出空格</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w">  </span>
+<span class="p">{</span><span class="w"> </span><span class="c1">// 函数内需要有缩进，一般是一个tab键</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="c1">// 逗号后需要留有空格</span>
+<span class="w">  </span><span class="c1">// 1. 若没有using namespace std; 的声明，则需在此声明cin函数来自于std命名空间</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// 2. 输入输出&quot;&lt;&lt;&quot;,&quot;&gt;&gt;” 前后请空格; &quot;+&quot;, &quot;-&quot;等运算符前后请空格； </span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">   </span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// main函数正常结束返回值为0</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_3">英文小驼峰式命名</h2>
+<p><div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">nowSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 英文小驼峰，且变量名需要有明确含义.</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">hairSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">//（可以)</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">mao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">//（不可以，采用拼音会降低你的代码可读性）</span>
+</code></pre></div>
+千万千万不要用拼音命名。变量名与函数名请起有实际意义的英文小驼峰式命名。</p>
 
 
 
