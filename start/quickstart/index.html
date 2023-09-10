@@ -548,6 +548,13 @@
         
           <li class="md-nav__item">
   <a href="#msys2" class="md-nav__link">
+    MSYS2 简介
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#msys2_1" class="md-nav__link">
     安装 MSYS2
   </a>
   
@@ -1129,6 +1136,13 @@
         
           <li class="md-nav__item">
   <a href="#msys2" class="md-nav__link">
+    MSYS2 简介
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#msys2_1" class="md-nav__link">
     安装 MSYS2
   </a>
   
@@ -1217,7 +1231,10 @@
 <p>但后续课程实验将尽力提供对于 MacOS 环境的兼容性（会在 MacBook 上进行测试）。</p>
 </div>
 <h2 id="_2">环境配置</h2>
-<h3 id="msys2">安装 MSYS2</h3>
+<h3 id="msys2">MSYS2 简介</h3>
+<p>MSYS2 基于 Cygwin, Cygwin 最早是一套使用 GCC 交叉编译出符合 Windows 可执行文件格式的程序的工具链（使用和 Linux 平台同一份或者经过少许修改的 C 源码）。同时为了使用起来更为方便，Cygwin 同时移植了 Unix Shell 环境和大量的 Unix 命令行工具。不过 Shell 环境和许多命令行工具需要 Linux 系统调用（如 <code>fork()</code> 等），因此 Cygwin 还开发了把 Linux 系统调用「翻译」为 Windows 系统调用的兼容层。MSYS2 就是某一版本 Cygwin 的分支。</p>
+<p>Git for Windows 也内置了一套 MSYS2</p>
+<h3 id="msys2_1">安装 MSYS2</h3>
 <div class="admonition info">
 <p class="admonition-title">Linux 用户请注意</p>
 <p>若你使用 Linux 发行版，则不需要安装 MSYS2。</p>
@@ -1232,16 +1249,18 @@
 <p class="admonition-title">为什么不使用自带的命令行工具 <code>cmd</code> 或 <code>powershell</code>？</p>
 <p>因为这些命令行工具承自 MS-DOS，具有不同于 Unix Shell 的语法和各种实用程序。你们此后的大部分课程实验都将是在 Linux 环境下进行的，因此使用 Unix Shell 可以更好地为你们将来的课程打下基础。</p>
 </div>
-<details class="question">
-<summary>什么是 MSYS2</summary>
-<p>MSYS2 基于 Cygwin, Cygwin 是一套能在 </p>
-<p>Git for Windows 也内置了一套 MSYS2</p>
-</details>
 <p>首先从<a href="https://www.msys2.org/">官网</a>或者<a href="https://mirror.nju.edu.cn/mirrorz-help/msys2/?mirror=NJU">南大镜像源</a>下载 MSYS2 安装包并安装。</p>
 <h3 id="msys-windows">将 MSYS 配置到 Windows 终端</h3>
-<details class="question">
-<summary>什么是 Windows 终端？</summary>
-<p>Windows 终端是微软推出的全新一代，并默认支持虚拟终端控制序列（即 ANSI 转义序列，这对于我们的项目进行是必需的！）我们假定所有使用 Windows 平台的读者都可以使用 Windows 终端。</p>
+<p>Windows 终端是微软推出的全新一代、功能更加完善的终端。</p>
+<p>我们假定所有使用 Windows 平台的读者都已经安装了 Windows 终端。</p>
+<details class="question" open="open">
+<summary>可以不用 Windows 终端吗？</summary>
+<p>因为它默认支持虚拟终端控制序列（即 ANSI 转义序列），这对于我们的项目进行是必需的。如果你可以自行配置使得 Conhost 也支持 ANSI 转义序列，那么也可以。</p>
+</details>
+<details class="question" open="open">
+<summary>终端和 Shell 有什么区别？</summary>
+<p>终端和 Shell 是两个往往相伴出现而实际上不同的概念。简言之，终端是帮助我们与 Shell 交互的可视化应用程序，Shell 则是系统对外提供的外壳/接口。使用更好的终端可以极大地提升我们在 Shell 环境内操作的体验。</p>
+<p>欲了解更多背景知识，请访问这个<a href="https://www.zhihu.com/question/21711307/answer/2231006377">帖子</a>。</p>
 </details>
 <p>打开 Windows 终端，在标签页下拉菜单中选择设置，点击添加新配置文件。</p>
 <p>在名称中输入 <code>MSYS2</code>，在命令行一栏中输入：</p>
@@ -1250,19 +1269,19 @@
 <p>并在图标一栏中选择：</p>
 <div class="highlight"><pre><span></span><code>$MSYS_PATH\msys2.ico
 </code></pre></div>
+<p>然后在选项卡标题中输入 MSYS2，保存配置文件即可。</p>
+<p>其他选项或 Windows 终端的默认配置文件可以按需设置。</p>
 <h3 id="msys-vscode">将 MSYS 配置到 VSCode 终端</h3>
-<details class="question">
-<summary>什么是 VSCode？</summary>
-</details>
+<p>VSCode</p>
 <h3 id="pacman">用 <code>pacman</code> 安装工具</h3>
 <p>我们接下来安装一些完成课程实验必要的工具：</p>
 <div class="highlight"><pre><span></span><code>pacman<span class="w"> </span>-S<span class="w"> </span>mingw-w64-x86_64-toolchain<span class="w"> </span>make<span class="w"> </span>git<span class="w"> </span>vim<span class="w"> </span>man
 </code></pre></div>
 <p>以上命令将为你安装 mingw-w64 工具链、自动化构建工具 GNU make、版本控制系统 git、编辑器 Vim、以及文档查询工具 man。</p>
 <p>如果在安装过程中报错了，请检查你的网络环境。如果你确信你的网络环境没有问题，可以使用<a href="https://mirror.nju.edu.cn/mirrorz-help/msys2/?mirror=NJU">南大镜像源</a>。</p>
-<div class="admonition question">
+<div class="admonition warning">
 <p class="admonition-title">还是报错怎么办？</p>
-<p>你需要学会提问。许多讲义都会推荐<a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way">提问的智慧</a> 作为</p>
+<p>见<a href="../#_3">学会解决问题</a>一节。</p>
 </div>
 <p>要检查 mingw-w64 工具链是否安装成功，可以执行以下命令：</p>
 <div class="highlight"><pre><span></span><code>g++<span class="w"> </span>--version
@@ -1272,31 +1291,31 @@
 <p class="admonition-title">Linux 用户请注意</p>
 <p>如果你使用 Linux 发行版，请使用该发行版自带的包管理器安装这些软件，注意 mingw 工具链需要换成 <code>g++</code> 和 <code>binutils</code>。</p>
 </div>
-<div class="admonition question">
-<p class="admonition-title">什么是 <code>pacman</code>？</p>
-<p><code>pacman</code> 是 MSYS2 内建的包管理器。包管理器的作用类似于「应用商店」，负责处理各种软件（只要官方仓库里有）。在安装时需要确保</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">什么是 Vim？</p>
+<details class="question" open="open">
+<summary>什么是 pacman/包管理器？</summary>
+<p>pacman 是 MSYS2 内建的包管理器。包管理器的作用类似于「应用商店」，负责处理各种软件（只要官方仓库里有）的安装、卸载、升级、依赖关系处理等。在安装时需要确保和软件源网络畅通，上面已经提供了将软件源更换为南大源的方法（你显然更易访问到它）。</p>
+</details>
+<details class="question" open="open">
+<summary>什么是 Vim？</summary>
 <p>Vim 是一个命令行文件编辑器。它可以完全不依赖鼠标和 GUI 而运作，仅靠键盘快捷键实现光标跳转、模式切换、复制粘贴、查找替换等功能。同时，受益于 Vim 内建的 Vimscript 为交互语言的接口，用户可通过 <code>.vimrc</code> 为 Vim 配置自定义配置和功能强大的插件。</p>
 <p>Neovim 是 Vim 的一个重构版本，致力于成为 Vim 的超集，它完全兼容 Vim 的各种配置，并可以使用 Lua 这种通用程序设计语言进行配置调整和插件开发。</p>
-</div>
+</details>
 <h2 id="_3">上手实验</h2>
 <h3 id="_4">编译和运行程序</h3>
 <p>接下来我们来学习如何使用 Unix shell 环境编译和运行程序。顺便借机熟悉一下 Unix shell 以及其包含的若干命令行工具的使用。</p>
 <p>在 Windows 终端中打开 MINGW64 Shell，输入 <code>cd ~</code> 将目录切换至自己的家目录。</p>
-<div class="admonition question">
-<p class="admonition-title">这是在干什么？</p>
+<details class="question" open="open">
+<summary>这是在干什么？</summary>
 <p>当你打开 shell 时，它总在文件系统的某个特定目录工作，使用 <code>pwd</code> 即可看到自己所在的目录，<code>~</code> 是家目录的缩写，你的家目录一般是 <code>/home/$Username</code>，使用 <code>realpath ~</code> 以得到家目录的真实路径名。<br /></p>
 <p>上文要求你输入的命令即是将你当前的工作目录切换至你的家目录，以便于后续新建程序。</p>
-</div>
-<div class="admonition question">
-<p class="admonition-title">如何获取帮助？</p>
+</details>
+<details class="question" open="open">
+<summary>如何获取帮助？</summary>
 <p>讲义不可能事无巨细地讲述每个命令，因此获取离线或联机帮助是必须的。在遇到不懂的命令时，你当然可以求助于搜索引擎以获取有关于该命令的信息。不过，使用 Shell 内建的 <code>help</code> 或 <code>man</code> 命令可以帮助你得到命令的信息。<br /></p>
 <p>试试键入 <code>help cd</code> 或 <code>man pwd</code>。</p>
 <p>如果你使用 Linux 发行版，可以试试安装 <code>tldr</code> 来获取更加简单的提示。</p>
 <p>如果你可以访问大语言模型聊天机器人，那么也可以试试向它提问。</p>
-</div>
+</details>
 <p>输入 <code>vim hello.cpp</code>，进入 Vim 编辑页面。</p>
 <div class="admonition tip">
 <p class="admonition-title">在进入 Vim 之前</p>
@@ -1321,16 +1340,27 @@
 <p>接下来再输入：<code>g++ hello.cpp -o hello; ./hello</code>。</p>
 <p>如果一切顺利，屏幕上将出现 <code>Hello, Problem Solving!</code>。</p>
 <p>恭喜你，第一次通过命令行编译并运行了一段 C++ 程序！ <del>（但我相信你们很多人早就不是第一次了）</del></p>
-<div class="admonition note">
-<p class="admonition-title">进一步学习</p>
+<details class="note" open="open">
+<summary>进一步学习 GCC 的使用</summary>
 <p>刚刚编译程序使用的是 GNU Compiler Collection (GCC) 套件的一部分（如果你使用的是 MSYS2 环境，那么你使用的是 GCC 的 mingw-w64 版本）。</p>
 <p><code>g++</code> 是 GCC 中的一个强大的 C++ 编译器。若想获取更多 <code>g++</code> 的使用方法，试试键入 <code>man g++</code>。 </p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">使用 VSCode 完成实验</p>
-<p>事实上，使用 VSCode 代替 Vim 作为编辑器，并使用 VSCode 的内建终端或插件（如 Code Runner）也可以完成上述操作。</p>
+</details>
+<details class="question" open="open">
+<summary>我觉得 Vim 太陈旧了。可以用现代的编辑器吗？</summary>
+<p>事实上，使用 VSCode 代替 Vim 作为编辑器，并使用 VSCode 的内建终端也可以完成上述操作。</p>
 <p>至于使用 VSCode 还是 Vim 作为你们的日常编辑环境，这就见仁见智了。大家可以自行选择。</p>
-</div>
+<p>但我们不推荐使用过于傻瓜式的插件（如 Code Runner），至少你需要知道它的原理之后再使用。</p>
+<p><em>另外，Vim 并不陈旧。在各种插件加持下，它往往还能超过现代编辑器的使用体验，但它的学习成本确实很高。</em></p>
+</details>
+<details class="note" open="open">
+<summary>进一步学习 Unix Shell 的使用</summary>
+<p>本版所描述的只是最简略的上手指南，如果想真正入门 Unix Shell 的使用，可以学习以下两个教程。</p>
+<ul>
+<li><a href="https://nju-projectn.github.io/ics-pa-gitbook/ics2022/linux.html">PA 讲义中的 GNU/Linux 入门教程</a>。</li>
+<li><a href="https://missing-semester-cn.github.io/">MIT Missing Semester（强烈推荐）</a>。</li>
+</ul>
+<p>你不必学完教程的全部部分，有时只需学完教程的开始一小节就可以胜任实验所要求的任务。如果你在教程中遇到了短时间内搞不明白且不影响实验进度的问题，记住<a href="../#_3">「过犹不及」</a>，也许现在并不是学习它们的时候。</p>
+</details>
 
 
 
