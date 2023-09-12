@@ -2124,15 +2124,15 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>注意上面的 <code>MSYS_PATH</code> 替换时路径要使用<strong>双反斜杠</strong>。</p>
-<details class="question" open="open">
-<summary>为什么要用双反斜杠？</summary>
-<p>Windows 默认的路径符号是反斜杠，但在 JSON 字符串里，这是特殊字符（<a href="https://zh.wikipedia.org/zh-cn/%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6">转义字符</a>），需要再用一个反斜杠转义后才是「真正」的反斜杠。</p>
-</details>
-<details class="question" open="open">
-<summary>上面这段应该添加到 JSON 文件的哪里？</summary>
+<div class="admonition tip">
+<p class="admonition-title">为 settings.json 添加属性</p>
 <p>上面要求你添加的内容其实是 JSON 配置「顶级对象」的一个属性（即 <code>"something": {...}</code>）。</p>
 <p>如果你的 JSON 里没有任何内容，你应该在上述内容的外层再添加一对大括号表示「顶级」对象。</p>
 <p>如果你的 JSON 里已经存在有内容，那么最外层的大括号就是「顶级对象」，请你在它内部的最后一个属性结束处加上一个<strong>英文逗号</strong>（如果原来没有的话），并在其后加上上面的这段。</p>
+</div>
+<details class="question" open="open">
+<summary>为什么要用双反斜杠？</summary>
+<p>Windows 默认的路径符号是反斜杠，但在 JSON 字符串里，这是特殊字符（<a href="https://zh.wikipedia.org/zh-cn/%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6">转义字符</a>），需要再用一个反斜杠转义后才是「真正」的反斜杠。</p>
 </details>
 <details class="question" open="open">
 <summary>什么是 JSON？</summary>
