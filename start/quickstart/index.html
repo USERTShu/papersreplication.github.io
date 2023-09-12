@@ -561,22 +561,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#msys" class="md-nav__link">
-    将 MSYS 的程序目录配置到环境变量
+  <a href="#msys2_2" class="md-nav__link">
+    将 MSYS2 的程序目录配置到环境变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#msys-windows" class="md-nav__link">
-    将 MSYS 配置到 Windows 终端
+  <a href="#msys2-windows" class="md-nav__link">
+    将 MSYS2 配置到 Windows 终端
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#msys-vscode" class="md-nav__link">
-    将 MSYS 配置到 VSCode 终端
+  <a href="#msys2-vscode" class="md-nav__link">
+    将 MSYS2 配置到 VSCode 终端
   </a>
   
 </li>
@@ -1912,22 +1912,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#msys" class="md-nav__link">
-    将 MSYS 的程序目录配置到环境变量
+  <a href="#msys2_2" class="md-nav__link">
+    将 MSYS2 的程序目录配置到环境变量
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#msys-windows" class="md-nav__link">
-    将 MSYS 配置到 Windows 终端
+  <a href="#msys2-windows" class="md-nav__link">
+    将 MSYS2 配置到 Windows 终端
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#msys-vscode" class="md-nav__link">
-    将 MSYS 配置到 VSCode 终端
+  <a href="#msys2-vscode" class="md-nav__link">
+    将 MSYS2 配置到 VSCode 终端
   </a>
   
 </li>
@@ -2037,15 +2037,15 @@
 <p>使用 WSL 也不失为一种好选择，但这样我们就将你视作 Linux 用户。</p>
 </details>
 <p>首先从<a href="https://www.msys2.org/">官网</a>或者<a href="https://mirror.nju.edu.cn/mirrorz-help/msys2/?mirror=NJU">南大镜像源</a>下载 MSYS2 安装包并安装。</p>
-<h3 id="msys">将 MSYS 的程序目录配置到环境变量</h3>
+<h3 id="msys2_2">将 MSYS2 的程序目录配置到环境变量</h3>
 <details class="info" open="open">
 <summary>使用 Windows 10 或更新的操作系统</summary>
 <p>Windows 10 的搜索功能可以极大的减轻你的思维和操作负担。</p>
 <p>如果你还在因为各种原因用更老的操作系统，那么是时候升级了——世道必进，后胜于今。</p>
 </details>
-<p>使用 <code>Win+S</code> 唤出搜索菜单，键入环境变量一词，选择第一个候选项。在新出现的页面中，在 <code>PATH</code> 中添加 <code>$MSYS_PATH\usr\bin</code> 和 <code>$MSYS_PATH\mingw64\bin</code>，这样就可以在 MSYS2 环境以外使用 MSYS2 环境中的工具了。</p>
+<p>使用 <code>Win+S</code> 唤出搜索菜单，键入环境变量一词，选择第一个候选项。在新出现的页面中，在 <code>PATH</code> 中添加 <code>$MSYS2_PATH\usr\bin</code> 和 <code>$MSYS2_PATH\mingw64\bin</code>，这样就可以在 MSYS2 环境以外使用 MSYS2 环境中的工具了。</p>
 <div class="admonition warning">
-<p class="admonition-title">什么是 <code>$MSYS_PATH</code>？</p>
+<p class="admonition-title">什么是 <code>$MSYS2_PATH</code>？</p>
 <p>这是一个变量，代指你 MSYS2 安装的路径。<strong>这个变量仅在文档中存在，你应该把它替换为你的 MSYS2 安装路径</strong>。</p>
 <p>计算机领域的文档经常出现这样的表达，使用变量的原因是每个人具体的配置不同。</p>
 </div>
@@ -2056,14 +2056,14 @@
 </details>
 <details class="question" open="open">
 <summary>为什么有两个二进制目录？</summary>
-<p><code>$MSYS_PATH\usr\bin</code> 是那些 Cygwin 环境才可以运行的（使用 Unix 系统调用）的软件包的安装处，<code>$MSYS_PATH\mingw64\bin</code> 是 mingw 构建的软件包的安装处。</p>
+<p><code>$MSYS2_PATH\usr\bin</code> 是那些 Cygwin 环境才可以运行的（使用 Unix 系统调用）的软件包的安装处，<code>$MSYS2_PATH\mingw64\bin</code> 是 mingw 构建的软件包的安装处。</p>
 </details>
 <details class="question" open="open">
 <summary>我设置了环境变量，但是变化没有生效啊？</summary>
 <p>请确认你是否保存了所有修改并退出了所有菜单，并重启所有的终端。</p>
 <p>环境变量是在程序加载启动时赋予的，修改环境变量不会影响正在运行的程序。</p>
 </details>
-<h3 id="msys-windows">将 MSYS 配置到 Windows 终端</h3>
+<h3 id="msys2-windows">将 MSYS2 配置到 Windows 终端</h3>
 <p>Windows 终端是微软推出的全新一代、功能更加完善的终端。</p>
 <p>我们假定所有使用 Windows 平台的读者都已经安装了 Windows 终端。</p>
 <details class="question" open="open">
@@ -2077,10 +2077,10 @@
 </details>
 <p>打开 Windows 终端，在标签页下拉菜单中选择设置，点击添加新配置文件。</p>
 <p>在名称中输入 <code>MSYS2</code>，在命令行一栏中输入：</p>
-<div class="highlight"><pre><span></span><code>$MSYS_PATH\msys2_shell.cmd -defterm -no-start -use-full-path -here -msys2
+<div class="highlight"><pre><span></span><code>$MSYS2_PATH\msys2_shell.cmd -defterm -no-start -use-full-path -here -msys2
 </code></pre></div>
 <p>并在图标一栏中选择：</p>
-<div class="highlight"><pre><span></span><code>$MSYS_PATH\msys2.ico
+<div class="highlight"><pre><span></span><code>$MSYS2_PATH\msys2.ico
 </code></pre></div>
 <p>然后在选项卡标题中输入 MSYS2，保存配置文件即可。</p>
 <p>其他选项或 Windows 终端的默认配置文件可以按需设置。</p>
@@ -2089,7 +2089,7 @@
 <p>如果你改为 <code>-mingw64</code>，那么该命令将启动 MINGW64 环境，它和默认的 MSYS2 环境没有大的区别，但是它更优先启动 <code>/mingw64/bin/</code> 下的程序。</p>
 <p>想知道这是怎么做到的？在两个环境分别执行 <code>echo $PATH</code> 试试。</p>
 </details>
-<h3 id="msys-vscode">将 MSYS 配置到 VSCode 终端</h3>
+<h3 id="msys2-vscode">将 MSYS2 配置到 VSCode 终端</h3>
 <p>VSCode 是目前一款十分流行的编辑器。从<a href="https://code.visualstudio.com/">这里</a>下载 VSCode。</p>
 <p>（不要从国内某些奇怪的收费源处安装啊 kora）</p>
 <p>VSCode 作为 GUI 应用，其使用是相当容易学会的，有不解之处可以查看<a href="https://code.visualstudio.com/docs">官方文档</a>。</p>
@@ -2112,7 +2112,7 @@
 <span class="w">        </span><span class="nt">&quot;icon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;terminal-cmd&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;msys2-msys2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$MSYS_PATH\\msys2_shell.cmd&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;$MSYS2_PATH\\msys2_shell.cmd&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="s2">&quot;-defterm&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">&quot;-use-full-path&quot;</span><span class="p">,</span>
