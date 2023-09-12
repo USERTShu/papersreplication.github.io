@@ -2083,7 +2083,10 @@
 <div class="highlight"><pre><span></span><code>$MSYS2_PATH\msys2.ico
 </code></pre></div>
 <p>然后在选项卡标题中输入 MSYS2，保存配置文件即可。</p>
-<p>其他选项或 Windows 终端的默认配置文件可以按需设置。</p>
+<p>其他选项可以按需设置，也可将 MSYS2 设定为 Windows 终端的默认配置。</p>
+<p>如果你配置成功了，你将可以在 Windows 终端上的下拉菜单中看到 MSYS2 的选项：</p>
+<p><img alt="Windows 终端中的 MSYS2 示例图片" src="../../pics/quickstart_msys2_in_windows_terminal.png" /></p>
+<p>我们十分建议你将 MSYS2 在「设置-启动」中<strong>设置为默认配置文件</strong>，并建议你在非集成环境下均使用 Windows 终端进入 MSYS2 Shell 环境。</p>
 <details class="question" open="open">
 <summary><code>-msys2</code> 是什么意思，还可以启动其它环境吗？</summary>
 <p>如果你改为 <code>-mingw64</code>，那么该命令将启动 MINGW64 环境，它和默认的 MSYS2 环境没有大的区别，但是它更优先启动 <code>/mingw64/bin/</code> 下的程序。</p>
@@ -2124,6 +2127,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>注意上面的 <code>MSYS_PATH</code> 替换时路径要使用<strong>双反斜杠</strong>。</p>
+<p>在你配置成功后，你同样可以在 VSCode 集成终端中类似 Windows 终端的下拉菜单找到 MSYS2 Shell 环境，我们同样建议你将其设为默认。</p>
 <div class="admonition tip">
 <p class="admonition-title">为 settings.json 添加属性</p>
 <p>上面要求你添加的内容其实是 JSON 配置「顶级对象」的一个属性（即 <code>"something": {...}</code>）。</p>
