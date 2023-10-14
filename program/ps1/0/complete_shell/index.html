@@ -1926,6 +1926,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    作业提交
+  </a>
+  
+    <nav class="md-nav" aria-label="作业提交">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    提交工程压缩包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    提交实验报告
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2040,6 +2067,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    作业提交
+  </a>
+  
+    <nav class="md-nav" aria-label="作业提交">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    提交工程压缩包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    提交实验报告
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2087,7 +2141,110 @@
 <p>但高中哲学知识告诉我们，方法也许也只是「鱼」，真正在我们认知和改变世界中起着「渔」的作用的应当是方法之上的方法论（methodology）。对于我们的教学而言，完成项目只是训练手段，而藉由这种手段实现的目的则是教会大家如何开发一个项目，而更进一步地，我们希望能一定程度地教会大家<em>如何编程</em>。</p>
 <p>当然，真正的心得还是要在实践中获取，平淡的文字也难以传达深刻的体会。如果你对编程毫无经验，那看完一段段的大道理也许会懵逼——<em>但这是正常的，不必惊慌。</em>在完成项目后，抑或是完成 PA 以后，甚至是本科毕业以后，你也许会多少会想起这些大道理。某种意义上，我们写这么多大道理，提供的也是一种「回味」。</p>
 </details>
-<p>在上一部分你应当已经拉取并运行了框架代码。事实上，框架代码编译为两个独立的可执行程序。一个是游戏主体，另一个则是游戏启动器。</p>
+<p>在上一部分你应当已经拉取并运行了框架代码。事实上，框架代码编译为两个独立的可执行程序。一个是游戏主体，另一个则是游戏启动器。在你先前执行的两条命令中， <code>make compile</code> 编译的是游戏本身，而 <code>make shell</code> 会编译并运行游戏启动器。</p>
+<p>在第零阶段，我们的主要任务是完善游戏启动器的功能，使得它可以：</p>
+<ul>
+<li>在启动器运行时重新编译游戏（全部重编译/增量重编译）。</li>
+<li>可选以调试模式启动游戏（运行 gdbserver 并启动调试端口）。</li>
+<li>可选用 gdb 连接上正在运行的游戏进程（无论是否用调试模式打开）或用 gdb 连接调试模式的 gdbserver。</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Linux 用户请注意</p>
+<p>由于部分发行版不会在安装 gdb 的同时安装 gdbserver，你可能需要手动安装 gdbserver。</p>
+</div>
+<p>要完成上述任务，我们必须理解游戏启动器的源代码。幸运的是，启动器是一个单文件 C 程序，理解起来较为容易。它在项目中的位置是 <code>wrapper/shell.c</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。</p>
+<p><code>shell.c</code> 在大部分代码经过封装的前提下仍有一百多行，阅读起来也并不容易。幸运的是，我们可以根据我们使用它的经验和 <code>main()</code> 函数的行为理解它执行的流程。</p>
+<p>启动器的 <code>main()</code> 函数只做了一件事：调用了 <code>cmd_mainloop()</code> 函数。而这个函数所做的事情要复杂一些，它进入了一个无限循环等待的用户的输入，每得到用户的一行输入，就进行解析，并根据解析结果执行特定的任务。</p>
+<h2 id="_4">作业提交</h2>
+<p>在完成以上任务后，你需要提交第零阶段作业。</p>
+<div class="admonition warning">
+<p class="admonition-title">请仔细阅读要求</p>
+<p>经历过中学阶段教育的大家应该懂得，无论作业完成情况如何，<strong>没交就是没做</strong>。</p>
+<p>且由于项目的工程性质，提交项目作业的流程可能对于没有经验的同学比较复杂，但按要求提交作业对于我们的批改工作进行是至关重要的（我们可能使用脚本来对你的作业进行评分）。</p>
+<p><strong>因此，我们不对任何由于没有按要求进行提交的得分损失负责。</strong></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">请不要拖延作业</p>
+<p>第零阶段作业<strong>不接受补交</strong>。</p>
+<p>如果你没有在 Hard ddl 前提交第零阶段作业，你将失去该阶段的所有分数（约占项目 15%）。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">请遵守学术诚信</p>
+<p>若你的项目被定性为抄袭，被记零分的「本次作业」将是<strong>整个第一学期项目</strong>而不是单个阶段。</p>
+</div>
+<p>须提交的作业包含两个部分，一是完成第零阶段后工程的压缩包，二是实验报告。</p>
+<p>请把要求的所有文件提交到<a href="https://box.nju.edu.cn/u/d/39bef7a8b0eb4229b899/">这个链接</a>，<strong>不要重复提交重名的文件</strong>。</p>
+<h3 id="_5">提交工程压缩包</h3>
+<div class="admonition warning">
+<p class="admonition-title">请谨慎操作项目文件</p>
+<p>如果你没有相关经验，建议你在进行作业提交<strong>前</strong>备份项目文件夹，以免意外删除或毁坏项目文件夹的内容。</p>
+</div>
+<p>在提交工程压缩包之前，请<strong>务必在 git 中提交更改</strong>，例如运行：</p>
+<div class="highlight"><pre><span></span><code>git add .
+git commit -m &quot;finish phase0&quot;
+</code></pre></div>
+<p>工程压缩包须使用 <code>.tar.gz</code> 格式，并应以 <code>$(STU_ID)_PSPJ0_$(PLATFORM)_$(VERSION).tar.gz</code> 命名。</p>
+<p>其中 <code>$(STU_ID)</code> 应替换为你的学号，<code>$(PLATFORM)</code> 应替换为你使用的平台（<code>PLATFORM := windows | linux</code>）。该压缩包的体积不应超过 10 MB，若包太大请在上传前运行 <code>make clean</code>。</p>
+<p><code>VERSION</code> 是你给提交文件指定的版本号（0~99），我们将只处理版本号最大的压缩包。</p>
+<p>例如，一位学号为 <code>211240088</code> 的同学在 linux 完成了第零阶段工程后，他应当将工程压缩包命名为 <code>211240088_PSPJ0_linux_0.tar.gz</code>。</p>
+<p>具体地，你可以通过在工程的直接父级路径运行下述命令来获得工程压缩包：</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-c<span class="w"> </span><span class="k">$(</span>FOLDER_NAME<span class="k">)</span><span class="w"> </span>clean
+tar<span class="w"> </span>-czvf<span class="w"> </span><span class="k">$(</span>STU_ID<span class="k">)</span>_PSPJ0_<span class="k">$(</span>PLATFORM<span class="k">)</span>_<span class="k">$(</span>VERSION<span class="k">)</span>.tar.gz<span class="w"> </span><span class="k">$(</span>FOLDER_NAME<span class="k">)</span>
+</code></pre></div>
+<p>其中 <code>$(FOLDER_NAME)</code> 应替换为你项目文件夹的名字。</p>
+<p>我们在接受到你的压缩包后，会去除文件名中的 <code>_$(VERSION)</code>，并在你使用的平台上依次运行：</p>
+<div class="highlight"><pre><span></span><code>tar<span class="w"> </span>-xzvf<span class="w"> </span><span class="k">$(</span>STU_ID<span class="k">)</span>_PSPJ0_<span class="k">$(</span>PLATFORM<span class="k">)</span>.tar.gz
+<span class="nb">cd</span><span class="w"> </span><span class="k">$(</span>STU_ID<span class="k">)</span>_PSPJ0_<span class="k">$(</span>PLATFORM<span class="k">)</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD
+cp<span class="w"> </span>path/to/std_makefile<span class="w"> </span>Makefile
+make<span class="w"> </span>clean
+make<span class="w"> </span>shell
+</code></pre></div>
+<p>如果其中的任何一步发生错误，本阶段的工程得分按零分计算。</p>
+<div class="admonition warning">
+<p class="admonition-title">请谨慎修改 Makefile</p>
+<p>我们会用我们的 Makefile 替换你的 Makefile，如果你的 Makefile 行为与我们不同可能会导致测试时出现错误。</p>
+<p><strong>如果我们发现你为通过项目评分恶意修改了 Makefile，视同抄袭。</strong></p>
+</div>
+<p>在进入 <code>shell</code> 界面后，我们按如下得分点计算项目得分（得分点比例待定）：</p>
+<ul>
+<li>运行 <code>compile</code> 后能够编译游戏。</li>
+<li>编译游戏后，运行 <code>game</code> 与 <code>log</code> 后表现正常。</li>
+<li><code>debug</code> 指令能够附加到正在运行的游戏上。</li>
+<li>游戏能够以调试模式启动（<code>game -g</code>）。</li>
+<li><code>debug -r</code> 指令能够正确附加到正在运行的调试模式游戏上。</li>
+</ul>
+<p>我们还会检查你的代码，如果你的代码不符合编码规范可能会被酌情扣分。</p>
+<h3 id="_6">提交实验报告</h3>
+<p>实验报告须使用 Markdown 撰写，并命名为 <code>$(STU_ID)_PSPJ0_$(VERSION).md</code>。</p>
+<details class="question">
+<summary>什么是 Markdown</summary>
+<p>Markdown 是一种轻量级的标记语言，你很容易通过搜索<a href="https://markdown.com.cn/basic-syntax/">教程</a>学会它。</p>
+</details>
+<p>实验报告没有特定的格式要求，只需要可读并含有要求必做的内容即可，但不得包含图片和超链接，文件大小不得超过 6 KB（约 2000 字）。</p>
+<p>我们要求你的必做内容包括：</p>
+<ul>
+<li><strong>如实介绍</strong>你项目的完成情况（可以参考我们设置的得分点，<strong>只要结果不要过程</strong>）。</li>
+<li>完成如下思考题：<ul>
+<li>将输出的前景色设为非高亮绿色，背景色设为非高亮白色的 ANSI 转义序列是什么？</li>
+<li>阅读程序闪退时输出的日志，游戏为什么会闪退？闪退时执行了什么代码？</li>
+<li>执行 <code>make shell</code> 时，编译 <code>shell.c</code> 的命令是什么？</li>
+<li>如何使用 gdb 定位到程序闪退执行到的那行代码？</li>
+<li><code>shell.c</code> 中的 <code>*strchr(str, '\n') = '\0'</code> 是什么意思？</li>
+<li><code>shell.c</code> 中的 <code>cmd = strtok(NULL, " ")</code> 是什么意思？</li>
+<li><code>cmd_table[]</code> 的结构体类型的每个成员分别是什么意思？都分别在什么时候用到了？</li>
+</ul>
+</li>
+</ul>
+<p>本项目的第零阶段到此结束。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>致谢：你现在看到的启动器源代码是 2021 级匡亚明学院计算机方向的孙飞宇同学友情帮助编写的。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
