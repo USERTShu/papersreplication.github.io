@@ -2486,7 +2486,7 @@ tar<span class="w"> </span>-czvf<span class="w"> </span><span class="k">$(</span
 <p>其中 <code>$(FOLDER_NAME)</code> 应替换为你项目文件夹的名字。</p>
 <p>我们在接受到你的压缩包后，会去除文件名中的 <code>_$(VERSION)</code>，并在你使用的平台上依次运行：</p>
 <div class="highlight"><pre><span></span><code>tar<span class="w"> </span>-xzvf<span class="w"> </span><span class="k">$(</span>STU_ID<span class="k">)</span>_PSPJ0_<span class="k">$(</span>PLATFORM<span class="k">)</span>.tar.gz
-<span class="nb">cd</span><span class="w"> </span><span class="k">$(</span>STU_ID<span class="k">)</span>_PSPJ0_<span class="k">$(</span>PLATFORM<span class="k">)</span>
+<span class="nb">cd</span><span class="w"> </span>project-1
 git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD
 cp<span class="w"> </span>path/to/std_makefile<span class="w"> </span>Makefile
 make<span class="w"> </span>clean
