@@ -2959,275 +2959,285 @@
 <p>给定一个 <span class="arithmatex">\(n(1 \leq n \leq 10^5)\)</span> 个点、<span class="arithmatex">\(m(1 \leq m \leq 2\times 10^5)\)</span> 条有向边的带非负权图，请你计算从 <span class="arithmatex">\(s\)</span> 出发，到每个点的距离。数据保证能从 <span class="arithmatex">\(s\)</span> 出发到任意点。</p>
 </details>
 <h3 id="_25">声明常量</h3>
-<p>=== "C++"</p>
-<pre><code>```cpp
-#include &lt;bits/stdc++.h&gt;
-using namespace std;
-const int N = 1e5 + 5, M = 2e5 + 5;
-```
-</code></pre>
-<p>=== "Python"</p>
-<pre><code>```python
-try: # 引入优先队列模块
-    import Queue as pq #python version &lt; 3.0
-except ImportError:
-    import queue as pq #python3.*
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">C++</label><label for="__tabbed_1_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2e5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span> <span class="c1"># 引入优先队列模块</span>
+    <span class="kn">import</span> <span class="nn">Queue</span> <span class="k">as</span> <span class="nn">pq</span> <span class="c1">#python version &lt; 3.0</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">queue</span> <span class="k">as</span> <span class="nn">pq</span> <span class="c1">#python3.*</span>
 
-N = int(1e5 + 5)
-M = int(2e5 + 5)
-INF = 0x3f3f3f3f
-```
-</code></pre>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">2e5</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">INF</span> <span class="o">=</span> <span class="mh">0x3f3f3f3f</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="_26">声明前向星结构体和其它变量</h3>
-<p>=== "C++"</p>
-<pre><code>```cpp
-struct qxx {
-  int nex, t, v;
-};
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">C++</label><label for="__tabbed_2_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">qxx</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">nex</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="p">};</span>
 
-qxx e[M];
-int h[N], cnt;
+<span class="n">qxx</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="n">cnt</span><span class="p">;</span>
 
-void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
+<span class="kt">void</span><span class="w"> </span><span class="nf">add_path</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="o">++</span><span class="n">cnt</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">qxx</span><span class="p">){</span><span class="n">h</span><span class="p">[</span><span class="n">f</span><span class="p">],</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">},</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cnt</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
-typedef pair&lt;int, int&gt; pii;
-priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt;&gt; q;
-int dist[N];
-```
-</code></pre>
-<p>=== "Python"</p>
-<pre><code>```python
-class qxx:  # 前向星类（结构体）
-    def __init__(self):
-        self.nex = 0
-        self.t = 0
-        self.v = 0
+<span class="k">typedef</span><span class="w"> </span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pii</span><span class="p">;</span>
+<span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pii</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">qxx</span><span class="p">:</span>  <span class="c1"># 前向星类（结构体）</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
 
-e = [qxx() for i in range(M)]  # 链表
-h = [0 for i in range(N)]
-cnt = 0
+<span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="n">qxx</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)]</span>  <span class="c1"># 链表</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
 
-dist = [INF for i in range(N)]
-q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
+<span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="n">INF</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">PriorityQueue</span><span class="p">()</span>  <span class="c1"># 定义优先队列，默认第一元小根堆</span>
 
-def add_path(f, t, v):  # 在前向星中加边
-    # 如果要修改全局变量，要使用 global 来声明
-    global cnt, e, h
-    # 调试时的输出语句，多个变量使用元组
-    # print("add_path(%d,%d,%d)" % (f,t,v))
-    cnt += 1
-    e[cnt].nex = h[f]
-    e[cnt].t = t
-    e[cnt].v = v
-    h[f] = cnt
-```
-</code></pre>
+<span class="k">def</span> <span class="nf">add_path</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>  <span class="c1"># 在前向星中加边</span>
+    <span class="c1"># 如果要修改全局变量，要使用 global 来声明</span>
+    <span class="k">global</span> <span class="n">cnt</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">h</span>
+    <span class="c1"># 调试时的输出语句，多个变量使用元组</span>
+    <span class="c1"># print(&quot;add_path(%d,%d,%d)&quot; % (f,t,v))</span>
+    <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">e</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">nex</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">f</span><span class="p">]</span>
+    <span class="n">e</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
+    <span class="n">e</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="n">h</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="dijkstra">Dijkstra 算法</h3>
-<p>=== "C++"</p>
-<pre><code>```cpp
-void dijkstra(int s) {
-  memset(dist, 0x3f, sizeof(dist));
-  dist[s] = 0, q.push(make_pair(0, s));
-  while (q.size()) {
-    pii u = q.top();
-    q.pop();
-    if (dist[u.second] &lt; u.first) continue;
-    for (int i = h[u.second]; i; i = e[i].nex) {
-      const int &amp;v = e[i].t, &amp;w = e[i].v;
-      if (dist[v] &lt;= dist[u.second] + w) continue;
-      dist[v] = dist[u.second] + w;
-      q.push(make_pair(dist[v], v));
-    }
-  }
-}
-```
-</code></pre>
-<p>=== "Python"</p>
-<pre><code>```python
-def nextedgeid(u):  # 生成器，可以用在 for 循环里
-    i = h[u]
-    while i:
-        yield i
-        i = e[i].nex
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">C++</label><label for="__tabbed_3_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">dijkstra</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">memset</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="w"> </span><span class="mh">0x3f</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">dist</span><span class="p">));</span>
+<span class="w">  </span><span class="n">dist</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">));</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pii</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+<span class="w">    </span><span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">second</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">first</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">second</span><span class="p">];</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">second</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">      </span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">second</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="w">      </span><span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">],</span><span class="w"> </span><span class="n">v</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">nextedgeid</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>  <span class="c1"># 生成器，可以用在 for 循环里</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">i</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nex</span>
 
 
-def dijkstra(s):
-    dist[s] = 0
-    q.put((0, s))
-    while not q.empty():
-        u = q.get()  # get 函数会顺便删除堆中对应的元素
-        if dist[u[1]] &lt; u[0]:
-            continue
-        for i in nextedgeid(u[1]):
-            v = e[i].t
-            w = e[i].v
-            if dist[v] &lt;= dist[u[1]]+w:
-                continue
-            dist[v] = dist[u[1]]+w
-            q.put((dist[v], v))
-```
-</code></pre>
+<span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">dist</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>  <span class="c1"># get 函数会顺便删除堆中对应的元素</span>
+        <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nextedgeid</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">t</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">v</span>
+            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">+</span><span class="n">w</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">+</span><span class="n">w</span>
+            <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">))</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="_27">主函数</h3>
-<p>=== "C++"</p>
-<pre><code>```cpp
-int n, m, s;
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">C++</label><label for="__tabbed_4_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
 
-int main() {
-  scanf("%d%d%d", &amp;n, &amp;m, &amp;s);
-  for (int i = 1; i &lt;= m; i++) {
-    int u, v, w;
-    scanf("%d%d%d", &amp;u, &amp;v, &amp;w);
-    add_path(u, v, w);
-  }
-  dijkstra(s);
-  for (int i = 1; i &lt;= n; i++) printf("%d ", dist[i]);
-  return 0;
-}
-```
-</code></pre>
-<p>=== "Python"</p>
-<pre><code>```python
-if __name__ == '__main__':
-    # 一行读入多个整数。注意它会把整行都读进来
-    n, m, s = map(int, input().split())
-    for i in range(m):
-        u, v, w = map(int, input().split())
-        add_path(u, v, w)
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>
+<span class="w">    </span><span class="n">add_path</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">dijkstra</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># 一行读入多个整数。注意它会把整行都读进来</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="n">add_path</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
 
-    dijkstra(s)
+    <span class="n">dijkstra</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 
-    for i in range(1, n + 1):
-        print(dist[i], end = ' ')
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
 
-    print()
-```
-</code></pre>
+    <span class="nb">print</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="_28">完整代码</h3>
-<p>=== "C++"</p>
-<pre><code>```cpp
-#include &lt;bits/stdc++.h&gt;
-using namespace std;
-const int N = 1e5 + 5, M = 2e5 + 5;
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">C++</label><label for="__tabbed_5_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2e5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 
-struct qxx {
-  int nex, t, v;
-};
+<span class="k">struct</span><span class="w"> </span><span class="nc">qxx</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">nex</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="p">};</span>
 
-qxx e[M];
-int h[N], cnt;
+<span class="n">qxx</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="n">cnt</span><span class="p">;</span>
 
-void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
+<span class="kt">void</span><span class="w"> </span><span class="nf">add_path</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="o">++</span><span class="n">cnt</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">qxx</span><span class="p">){</span><span class="n">h</span><span class="p">[</span><span class="n">f</span><span class="p">],</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">},</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cnt</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 
-typedef pair&lt;int, int&gt; pii;
-priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt;&gt; q;
-int dist[N];
+<span class="k">typedef</span><span class="w"> </span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pii</span><span class="p">;</span>
+<span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">pii</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="n">pii</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
 
-void dijkstra(int s) {
-  memset(dist, 0x3f, sizeof(dist));
-  dist[s] = 0, q.push(make_pair(0, s));
-  while (q.size()) {
-    pii u = q.top();
-    q.pop();
-    if (dist[u.second] &lt; u.first) continue;
-    for (int i = h[u.second]; i; i = e[i].nex) {
-      const int &amp;v = e[i].t, &amp;w = e[i].v;
-      if (dist[v] &lt;= dist[u.second] + w) continue;
-      dist[v] = dist[u.second] + w;
-      q.push(make_pair(dist[v], v));
-    }
-  }
-}
+<span class="kt">void</span><span class="w"> </span><span class="nf">dijkstra</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">memset</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="w"> </span><span class="mh">0x3f</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">dist</span><span class="p">));</span>
+<span class="w">  </span><span class="n">dist</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">));</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pii</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+<span class="w">    </span><span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">second</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">first</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">second</span><span class="p">];</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">nex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">second</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">      </span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">second</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="w">      </span><span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">],</span><span class="w"> </span><span class="n">v</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-int n, m, s;
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
 
-int main() {
-  scanf("%d%d%d", &amp;n, &amp;m, &amp;s);
-  for (int i = 1; i &lt;= m; i++) {
-    int u, v, w;
-    scanf("%d%d%d", &amp;u, &amp;v, &amp;w);
-    add_path(u, v, w);
-  }
-  dijkstra(s);
-  for (int i = 1; i &lt;= n; i++) printf("%d ", dist[i]);
-  return 0;
-}
-```
-</code></pre>
-<p>=== "Python"</p>
-<pre><code>```python
-try:  # 引入优先队列模块
-    import Queue as pq  # python version &lt; 3.0
-except ImportError:
-    import queue as pq  # python3.*
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">w</span><span class="p">);</span>
+<span class="w">    </span><span class="n">add_path</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">dijkstra</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>  <span class="c1"># 引入优先队列模块</span>
+    <span class="kn">import</span> <span class="nn">Queue</span> <span class="k">as</span> <span class="nn">pq</span>  <span class="c1"># python version &lt; 3.0</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">queue</span> <span class="k">as</span> <span class="nn">pq</span>  <span class="c1"># python3.*</span>
 
-N = int(1e5+5)
-M = int(2e5+5)
-INF = 0x3f3f3f3f
+<span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">2e5</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">INF</span> <span class="o">=</span> <span class="mh">0x3f3f3f3f</span>
 
-class qxx:  # 前向星类（结构体）
-    def __init__(self):
-        self.nex = 0
-        self.t = 0
-        self.v = 0
+<span class="k">class</span> <span class="nc">qxx</span><span class="p">:</span>  <span class="c1"># 前向星类（结构体）</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nex</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
 
-e = [qxx() for i in range(M)]  # 链表
-h = [0 for i in range(N)]
-cnt = 0
+<span class="n">e</span> <span class="o">=</span> <span class="p">[</span><span class="n">qxx</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">)]</span>  <span class="c1"># 链表</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
 
-dist = [INF for i in range(N)]
-q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
+<span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="n">INF</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">PriorityQueue</span><span class="p">()</span>  <span class="c1"># 定义优先队列，默认第一元小根堆</span>
 
-def add_path(f, t, v):  # 在前向星中加边
-    # 如果要修改全局变量，要使用 global 来声名
-    global cnt, e, h
-    # 调试时的输出语句，多个变量使用元组
-    # print("add_path(%d,%d,%d)" % (f,t,v))
-    cnt += 1
-    e[cnt].nex = h[f]
-    e[cnt].t = t
-    e[cnt].v = v
-    h[f] = cnt
+<span class="k">def</span> <span class="nf">add_path</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>  <span class="c1"># 在前向星中加边</span>
+    <span class="c1"># 如果要修改全局变量，要使用 global 来声名</span>
+    <span class="k">global</span> <span class="n">cnt</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">h</span>
+    <span class="c1"># 调试时的输出语句，多个变量使用元组</span>
+    <span class="c1"># print(&quot;add_path(%d,%d,%d)&quot; % (f,t,v))</span>
+    <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">e</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">nex</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">f</span><span class="p">]</span>
+    <span class="n">e</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
+    <span class="n">e</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="n">h</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span>
 
-def nextedgeid(u):  # 生成器，可以用在 for 循环里
-    i = h[u]
-    while i:
-        yield i
-        i = e[i].nex
+<span class="k">def</span> <span class="nf">nextedgeid</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>  <span class="c1"># 生成器，可以用在 for 循环里</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">i</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nex</span>
 
-def dijkstra(s):
-    dist[s] = 0
-    q.put((0, s))
-    while not q.empty():
-        u = q.get()
-        if dist[u[1]] &lt; u[0]:
-            continue
-        for i in nextedgeid(u[1]):
-            v = e[i].t
-            w = e[i].v
-            if dist[v] &lt;= dist[u[1]]+w:
-                continue
-            dist[v] = dist[u[1]]+w
-            q.put((dist[v], v))
+<span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">dist</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nextedgeid</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">t</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">v</span>
+            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">+</span><span class="n">w</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">+</span><span class="n">w</span>
+            <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">))</span>
 
 
-# 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
-if __name__ == '__main__':
-    # 一行读入多个整数。注意它会把整行都读进来
-    n, m, s = map(int, input().split())
-    for i in range(m):
-        u, v, w = map(int, input().split())
-        add_path(u, v, w)
+<span class="c1"># 如果你直接运行这个python代码（不是模块调用什么的）就执行命令</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># 一行读入多个整数。注意它会把整行都读进来</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+        <span class="n">add_path</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
 
-    dijkstra(s)
+    <span class="n">dijkstra</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 
-    for i in range(1, n + 1):
-        # 两种输出语法都是可以用的
-        print("{}".format(dist[i]), end=' ')
-        # print("%d" % dist[i],end=' ')
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># 两种输出语法都是可以用的</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="c1"># print(&quot;%d&quot; % dist[i],end=&#39; &#39;)</span>
 
-    print()  # 结尾换行
-```
-</code></pre>
+    <span class="nb">print</span><span class="p">()</span>  <span class="c1"># 结尾换行</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="_29">参考文档</h2>
 <ol>
 <li>Python Documentation，<a href="https://www.python.org/doc/">https://www.python.org/doc/</a></li>
