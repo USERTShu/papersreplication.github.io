@@ -12,7 +12,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../../../../lab/">
+        <link rel="next" href="../draw/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
@@ -1971,6 +1971,10 @@
         
           
         
+          
+        
+          
+        
       
       
         
@@ -2094,10 +2098,10 @@
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    游戏代码架构
+    代码架构
   </a>
   
-    <nav class="md-nav" aria-label="游戏代码架构">
+    <nav class="md-nav" aria-label="代码架构">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2116,7 +2120,7 @@
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    游戏整体架构大观
+    代码整体架构大观
   </a>
   
 </li>
@@ -2130,6 +2134,34 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../draw/" class="md-nav__link">
+        组件管理与绘制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../event/" class="md-nav__link">
+        用户输入与事件
+      </a>
     </li>
   
 
@@ -2288,10 +2320,10 @@
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    游戏代码架构
+    代码架构
   </a>
   
-    <nav class="md-nav" aria-label="游戏代码架构">
+    <nav class="md-nav" aria-label="代码架构">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2310,7 +2342,7 @@
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    游戏整体架构大观
+    代码整体架构大观
   </a>
   
 </li>
@@ -2346,7 +2378,8 @@
 </div>
 <p>RTFSC 是 Reading The Fucking Source Code 的缩写，来自于 <a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">Linus</a> 在邮件中的「友善」嘴臭。</p>
 <p>虽然骂人不好，但这话更像自言自语，有如「It's time to read the fucking source code」。它提醒我们：无论是在初步接手一个项目，抑或是遇到了一些疑难杂症时，沉下心来读一读源代码都很可能对我们大有裨益。</p>
-<p>由此，作为第一阶段的开端，在本部分中我们将带领大家阅读框架的源代码。</p>
+<p>但不少同学作为初学者，哪怕对于小型项目的结构和代码都感到一头雾水</p>
+<p>由此，作为第一阶段的开端，在本部分中我们为大家介绍阅读框架代码所必须的前置知识，并通过阅读代码了解框架代码的大略架构。</p>
 <h2 id="_2">代码组织与构建</h2>
 <p>在第零阶段我们说过，项目中共有两个可执行文件：游戏和启动器。</p>
 <p>启动器是一个单源文件程序，而游戏对应着多份源代码。在 OJ 中，大家也许习惯于编写一个源文件而得到对应的程序，但是对于复杂的项目，只使用一个源文件构建得到一个程序是不现实的。试想如果一个源文件中有着数万乃至数十万行代码，会使得阅读和维护代码变得多么麻烦？</p>
@@ -2383,10 +2416,10 @@
 <h3 id="_4">多源文件程序的构建</h3>
 <h4 id="cc">C/C++ 构建流程</h4>
 <h4 id="make">运用 Make 进行构建</h4>
-<h2 id="_5">游戏代码架构</h2>
+<h2 id="_5">代码架构</h2>
 <h3 id="ansih-debugh">玩转宏定义：<code>ansi.h</code> 与 <code>debug.h</code></h3>
 <h3 id="minitui">面向对象初步：Minitui 组件库</h3>
-<h3 id="_6">游戏整体架构大观</h3>
+<h3 id="_6">代码整体架构大观</h3>
 
 
 
