@@ -2181,6 +2181,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    本部分思考题
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2499,6 +2506,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    本部分思考题
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2527,6 +2541,15 @@
 <p class="admonition-title">难度警示</p>
 <p>我们在上手任何任务时都存在一个学习曲线。在项目任务中，尤其是对于零基础的同学，这将会是学习曲线最为陡峭之处。<em>请充分重视第一阶段，否则你很有可能无法完成后续所有阶段。</em></p>
 <p>这一部分要求完成的任务很少，而我们仍为它<a href="../../../../schedule/ps1/#_5">安排了一周的时间</a>，<strong>但这不是中间休息时间</strong>。我们希望你能用一周的时间<a href="../../../#_3">认真阅读讲义</a>，并确保理解了框架的代码。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">关于 GPT 的使用</p>
+<p>请尽量不要让 GPT 等大语言模型直接帮你生成作业代码。你可以让它为你解释讲义中你看不懂的技术细节，也可以让它为你提供某样技术细节的实现乃至示例代码。</p>
+<p>但如果你直接让 GPT 生成项目需要添加的代码，可能会有如下几点后果：</p>
+<ul>
+<li>你可能并不懂 GPT 的代码为何能够工作，这可能令你在后续需要修改该代码时遇到困难。</li>
+<li>GPT 的代码可能是错误的，而你没有进行足够的阅读或</li>
+</ul>
 </div>
 <p>RTFSC 是 Reading The Fucking Source Code 的缩写，来自于 <a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">Linus</a> 在邮件中的「友善」嘴臭。</p>
 <p>虽然骂人不好，但这话更像自言自语，有如「It's time to read the fucking source code」。它提醒我们：无论是在初步接手一个项目，抑或是遇到了一些疑难杂症时，沉下心来读一读源代码都很可能对我们大有裨益。</p>
@@ -2568,10 +2591,58 @@
 <h3 id="_4">多源文件程序的构建</h3>
 <h4 id="cc">C/C++ 构建流程</h4>
 <h4 id="make">运用 Make 进行构建</h4>
+<details class="example" open="open">
+<summary>手动构建项目</summary>
+<p>之前我们说过可以通过 <code>make -n</code> 来查看项目构建时 <code>make</code> 运行的命令。</p>
+<p>假设 <code>make</code> 不存在，你应该如何构建整个项目呢？既然你已经了解了项目构建的流程了，不妨动手试试看。</p>
+</details>
 <h2 id="_5">代码架构</h2>
 <h3 id="ansih-debugh">玩转宏定义：<code>ansi.h</code> 与 <code>debug.h</code></h3>
 <h3 id="minitui">面向对象初步：Minitui 组件库</h3>
 <h3 id="_6">代码整体架构大观</h3>
+<h3 id="_7">本部分思考题</h3>
+<p>+（代码组织与构建）假设现欲添加一个名为 <code>glob_value</code> 的 <code>int</code> 类型全局变量，并要求源代码通过包含一个头文件 <code>glob_value.h</code> 就可以访问该变量，<code>glob_value.h</code> 里应该如何写？源代码应该作何修改（可以添加新文件）？</p>
+<p>+（代码组织与构建）指出 <code>Makefile</code> 中 <code>CXXFLAGS</code> 变量最终的值。假设要为游戏的所有源代码文件增加一个 <code>common/include</code> 的 <code>#include</code> 搜索路径，应该如何修改 <code>Makefile</code> （当然，你不要真的修改 <code>Makefile</code>）？</p>
+<p>+（代码组织与构建）<code>ansi.h</code> 并未被 <code>Makefile</code> 文件中的代码指定为任何目标的依赖，本身也没有被指定为目标。为什么在修改 <code>ansi.h</code> 后，执行 <code>make compile</code> 会导致部分源代码被重新编译？或者说，<code>Makefile</code> 是如何识别头文件依赖的？你的回答应该尽可能详细。
+提示：查看编译后 <code>build</code> 目录下的 <code>*.d</code> 文件，并查阅 <code>g++</code> 中 <code>-MMD</code> 命令的作用。</p>
+<p>+（玩转宏定义）<code>"\033[?1049h"</code> 可以启用所谓的备用缓冲区。请用 <code>ansi.h</code> 中定义的宏写出启用备用缓冲区的代码，你的代码应该尽可能短。</p>
+<p>+（玩转宏定义）解释 <code>## __VA_ARGS__</code> 的意思。为什么 <code>debug.h</code> 中使用 <code>## __VA_ARGS__</code> 而不是 <code>__VA_ARGS__</code> ？</p>
+<p>+（玩转宏定义）假设现欲兼容 MacOS，原来的条件编译代码可以写为：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#ifdef _WIN64</span>
+<span class="c1">// some code functions in Windows</span>
+<span class="cp">#else</span>
+<span class="c1">// some code functions in Linux</span>
+<span class="cp">#endif</span>
+</code></pre></div>
+<p>兼容 MacOS 后，条件编译代码应该写作什么形式？</p>
+<p>+（面向对象初步）列出 <code>mainscr</code> 类的所有成员变量和函数，并分别指出它们是被继承关系上的哪个类定义的。如果是虚函数，分别指出该虚函最初继承自哪个抽象类，并是在哪个类被实现的？</p>
+<!-- +（面向对象初步，开放题）如果有两个类 B、C 继承了 A，同时又有一个类 D 继承了 B、C，你觉得会引发什么问题？你觉得这体现出了继承机制的什么缺陷？上网查询资料，其他面向对象的高级语言对此进行了什么改进？ -->
+
+<p>+（面向对象初步，开放题）菱形继承和虚继承是 C++ 继承机制中最麻烦的一环，容易产生错综复杂，难以理清的编译问题。上网查询资料，哪些面向对象的高级语言对此进行了改进？进行了什么改进？</p>
+<p>&lt;!-- +（面向对象初步）现有一个基类 <code>Foo</code> 及其派生类 <code>Bar</code>，我们有如下代码：
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// some code</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">instanceOf</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Foo&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Bar</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//some code</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">instanceof</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Bar&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="err">```</span><span class="w"> </span><span class="o">--&gt;</span>
+
+<span class="o">+</span><span class="w"> </span><span class="err">（</span><span class="n">附加题</span><span class="err">，</span><span class="n">仅供</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">平台</span><span class="err">）</span><span class="n">学习</span><span class="w"> </span><span class="err">`</span><span class="n">sed</span><span class="err">`。`</span><span class="n">Makefile</span><span class="err">`</span><span class="w"> </span><span class="n">编译</span><span class="w"> </span><span class="err">`</span><span class="o">%</span><span class="p">.</span><span class="n">cpp</span><span class="err">`</span><span class="w"> </span><span class="n">时采用了如下规则</span><span class="err">：</span>
+
+<span class="err">```</span><span class="n">makefile</span>
+<span class="n">$</span><span class="p">(</span><span class="n">BUILD_DIR</span><span class="p">)</span><span class="o">/%</span><span class="p">.</span><span class="n">o</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">%</span><span class="p">.</span><span class="n">cpp</span>
+<span class="w">    </span><span class="cp"># ...</span>
+<span class="w">    </span><span class="err">@</span><span class="n">sed</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="err">&#39;</span><span class="n">s</span><span class="o">/</span><span class="p">[</span><span class="n">A</span><span class="o">-</span><span class="n">Z</span><span class="p">]</span><span class="o">:</span><span class="err">\</span><span class="c1">//\/\l&amp;/g&#39; $(patsubst %.o, %.d, $@)</span>
+<span class="w">    </span><span class="err">@</span><span class="n">sed</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="err">&#39;</span><span class="n">s</span><span class="o">/:</span><span class="err">\</span><span class="c1">//\//g&#39; $(patsubst %.o, %.d, $@)</span>
+</code></pre></div></p>
+<p>请问这两行 <code>sed</code> 命令目的为何？学习 <code>cygpath</code> 命令的使用，请给出一种更好的达成前述目的的方案。</p>
 
 
 
