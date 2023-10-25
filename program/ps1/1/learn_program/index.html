@@ -2186,6 +2186,40 @@
     本部分思考题
   </a>
   
+    <nav class="md-nav" aria-label="本部分思考题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    代码组织与构建
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    玩转宏定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    面向对象初步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    附加题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2511,6 +2545,40 @@
     本部分思考题
   </a>
   
+    <nav class="md-nav" aria-label="本部分思考题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    代码组织与构建
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    玩转宏定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    面向对象初步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    附加题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2601,14 +2669,18 @@
 <h3 id="minitui">面向对象初步：Minitui 组件库</h3>
 <h3 id="_6">代码整体架构大观</h3>
 <h3 id="_7">本部分思考题</h3>
+<h4 id="_8">代码组织与构建</h4>
 <ul>
-<li>（代码组织与构建）假设现欲添加一个名为 <code>glob_value</code> 的 <code>int</code> 类型全局变量，并要求源代码通过包含一个头文件 <code>glob_value.h</code> 就可以访问该变量，<code>glob_value.h</code> 里应该如何写？源代码应该作何修改（可以添加新文件）？</li>
-<li>（代码组织与构建）指出 <code>Makefile</code> 中 <code>CXXFLAGS</code> 变量最终的值。假设要为游戏的所有源代码文件增加一个 <code>common/include</code> 的 <code>#include</code> 搜索路径，应该如何修改 <code>Makefile</code> （当然，你不要真的修改 <code>Makefile</code>）？</li>
-<li>（代码组织与构建）<code>ansi.h</code> 并未被 <code>Makefile</code> 文件中的代码指定为任何目标的依赖，本身也没有被指定为目标。为什么在修改 <code>ansi.h</code> 后，执行 <code>make compile</code> 会导致部分源代码被重新编译？或者说，<code>Makefile</code> 是如何识别头文件依赖的？你的回答应该尽可能详细。
-提示：查看编译后 <code>build</code> 目录下的 <code>*.d</code> 文件，并查阅 <code>g++</code> 中 <code>-MMD</code> 命令的作用。</li>
-<li>（玩转宏定义）<code>"\033[?1049h"</code> 可以启用所谓的备用缓冲区。请用 <code>ansi.h</code> 中定义的宏写出启用备用缓冲区的代码，你的代码应该尽可能短。</li>
-<li>（玩转宏定义）解释 <code>## __VA_ARGS__</code> 的意思。为什么 <code>debug.h</code> 中使用 <code>## __VA_ARGS__</code> 而不是 <code>__VA_ARGS__</code> ？</li>
-<li>（玩转宏定义）假设现欲兼容 MacOS，原来的条件编译代码可以写为：
+<li>假设现欲添加一个名为 <code>glob_value</code> 的 <code>int</code> 类型全局变量，并要求源代码通过包含一个头文件 <code>glob_value.h</code> 就可以访问该变量，<code>glob_value.h</code> 里应该如何写？源代码应该作何修改（可以添加新文件）？</li>
+<li>指出 <code>Makefile</code> 中 <code>CXXFLAGS</code> 变量最终的值。假设要为游戏的所有源代码文件增加一个 <code>common/include</code> 的 <code>#include</code> 搜索路径，应该如何修改 <code>Makefile</code> （当然，你不要真的修改 <code>Makefile</code>）？</li>
+<li><code>ansi.h</code> 并未被 <code>Makefile</code> 文件中的代码指定为任何目标的依赖，本身也没有被指定为目标。为什么在修改 <code>ansi.h</code> 后，执行 <code>make compile</code> 会导致部分源代码被重新编译？或者说，<code>Makefile</code> 是如何识别头文件依赖的？你的回答应该尽可能详细。
+<br />提示：查看编译后 <code>build</code> 目录下的 <code>*.d</code> 文件，并查阅 <code>g++</code> 中 <code>-MMD</code> 命令的作用。</li>
+</ul>
+<h4 id="_9">玩转宏定义</h4>
+<ul>
+<li><code>"\033[?1049h"</code> 可以启用所谓的备用缓冲区。请用 <code>ansi.h</code> 中定义的宏写出启用备用缓冲区的代码，你的代码应该尽可能短。</li>
+<li>解释 <code>## __VA_ARGS__</code> 的意思。为什么 <code>debug.h</code> 中使用 <code>## __VA_ARGS__</code> 而不是 <code>__VA_ARGS__</code> ？</li>
+<li>假设现欲兼容 MacOS，原来的条件编译代码可以写为：
 <div class="highlight"><pre><span></span><code><span class="cp">#ifdef _WIN64</span>
 <span class="c1">// some code functions in Windows</span>
 <span class="cp">#else</span>
@@ -2616,15 +2688,21 @@
 <span class="cp">#endif</span>
 </code></pre></div>
 兼容 MacOS 后，条件编译代码应该写作什么形式？</li>
-<li>（面向对象初步）列出 <code>mainscr</code> 类的所有成员变量和函数，并分别指出它们是被继承关系上的哪个类定义的。如果是虚函数，分别指出该虚函最初继承自哪个抽象类，并是在哪个类被实现的？</li>
-<li>（面向对象初步，开放题）菱形继承和虚继承是 C++ 继承机制中最麻烦的一环，容易产生错综复杂，难以理清的编译问题。上网查询资料，哪些面向对象的高级语言对此进行了改进？进行了什么改进？</li>
-<li>（附加题，仅供 Windows 平台）学习 <code>sed</code>。<code>Makefile</code> 编译 <code>%.cpp</code> 时采用了如下规则：
+</ul>
+<h4 id="_10">面向对象初步</h4>
+<ul>
+<li>列出 <code>mainscr</code> 类的所有成员变量和函数，并分别指出它们是被继承关系上的哪个类定义的。如果是虚函数，分别指出该虚函最初继承自哪个抽象类，并是在哪个类被实现的？</li>
+<li>菱形继承和虚继承是 C++ 继承机制中最麻烦的一环，容易产生错综复杂，难以理清的编译问题。上网查询资料，哪些面向对象的高级语言对此进行了改进？进行了什么改进？</li>
+</ul>
+<h4 id="_11">附加题</h4>
+<ul>
+<li>学习 <code>sed</code>。<code>Makefile</code> 编译 <code>%.cpp</code> 时采用了如下规则：
 <div class="highlight"><pre><span></span><code><span class="nf">$(BUILD_DIR)/%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span>
 <span class="c">    # ...</span>
 <span class="w">    </span>@sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/[A-Z]:\//\/\l&amp;/g&#39;</span><span class="w"> </span><span class="k">$(</span>patsubst<span class="w"> </span>%.o,<span class="w"> </span>%.d,<span class="w"> </span><span class="nv">$@</span><span class="k">)</span>
 <span class="w">    </span>@sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/:\//\//g&#39;</span><span class="w"> </span><span class="k">$(</span>patsubst<span class="w"> </span>%.o,<span class="w"> </span>%.d,<span class="w"> </span><span class="nv">$@</span><span class="k">)</span>
 </code></pre></div>
-请问这两行 <code>sed</code> 命令目的为何？学习 <code>cygpath</code> 命令的使用，请给出一种更好的达成前述目的的方案。</li>
+请问这两行 <code>sed</code> 命令目的为何？<br />学习 <code>cygpath</code> 命令的使用，请给出一种更好的达成前述目的的方案。</li>
 </ul>
 <!-- +（面向对象初步）现有一个基类 `Foo` 及其派生类 `Bar`，我们有如下代码：
 ```cpp
