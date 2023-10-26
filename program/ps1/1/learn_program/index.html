@@ -2129,8 +2129,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cc" class="md-nav__link">
-    C/C++ 构建流程
+  <a href="#_5" class="md-nav__link">
+    构建可执行程序的流程
   </a>
   
 </li>
@@ -2153,7 +2153,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     代码架构
   </a>
   
@@ -2175,14 +2175,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     代码整体架构大观
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     本部分思考题
   </a>
   
@@ -2190,28 +2190,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     代码组织与构建
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     玩转宏定义
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     面向对象初步
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     附加题
   </a>
   
@@ -2488,8 +2488,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cc" class="md-nav__link">
-    C/C++ 构建流程
+  <a href="#_5" class="md-nav__link">
+    构建可执行程序的流程
   </a>
   
 </li>
@@ -2512,7 +2512,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     代码架构
   </a>
   
@@ -2534,14 +2534,14 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     代码整体架构大观
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     本部分思考题
   </a>
   
@@ -2549,28 +2549,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     代码组织与构建
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     玩转宏定义
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     面向对象初步
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     附加题
   </a>
   
@@ -2657,26 +2657,43 @@
 <span class="w"> </span>/usr/lib/gcc/x86_64-pc-msys/11.3.0/../../../../lib/../include/w32api
 </code></pre></div>
 <h3 id="_4">多源文件程序的构建</h3>
-<h4 id="cc">C/C++ 构建流程</h4>
+<h4 id="_5">构建可执行程序的流程</h4>
+<p><em>这里介绍的流程为了切合大家的学习阶段作了简化。</em></p>
+<p>C/C++ 构建流程大体可分为预处理、编译、汇编、链接四个步骤。</p>
+<p>为了理解方便，你可以认为只有 <code>.c/.cpp</code> 结尾的源文件参与了构建。</p>
+<ul>
+<li>预处理 <code>cpp</code>：在这一步，源文件所有的 <code>#</code> 预编译命令都被展开。头文件在此步被引入。</li>
+<li>编译 <code>ccl</code>：在这一步，预处理后的源文件被编译成汇编代码文件。</li>
+<li>汇编 <code>as</code>：在这一步，汇编代码文件被编译为可重定位目标文件（<code>.o</code> 文件），在 Windows 平台上，它是 <a href="https://en.wikipedia.org/wiki/COFF0">COFF 格式</a>，在 Linux 平台上，它是 <a href="https://en.wikipedia.org/wiki/Executable_and_Linkable_Format">ELF 格式</a>。</li>
+<li>链接 <code>ld</code>：在这一步，可重定位目标文件被链接成一个完整的可执行文件，在 Windows 平台上，它是 <a href="https://en.wikipedia.org/wiki/Portable_Executable">PE 格式</a>，即常见的 exe 程序，在 Linux 平台上，它仍是 <a href="https://en.wikipedia.org/wiki/Executable_and_Linkable_Format">ELF 格式</a>。</li>
+</ul>
+<p>上述流程可以被表示为：</p>
+<p><img alt="构建流程" src="../../../../pics/project-1-1.png" /></p>
+<p>GCC 提供了细粒度地控制构建流程的选项，展示如下：</p>
+<div class="highlight"><pre><span></span><code>-E      Preprocess only; do not compile, assemble or link.
+-S      Compile only; do not assemble or link.
+-c      Compile and assemble, but do not link.
+</code></pre></div>
+<p>在现阶段，我们不是很关心预处理、编译所得到的中间产物。因此为方便起见，我们把预处理、编译、汇编三步统称为编译。</p>
 <h4 id="make">运用 Make 进行构建</h4>
 <details class="example" open="open">
 <summary>手动构建项目</summary>
 <p>之前我们说过可以通过 <code>make -n</code> 来查看项目构建时 <code>make</code> 运行的命令。</p>
 <p>假设 <code>make</code> 不存在，你应该如何构建整个项目呢？既然你已经了解了项目构建的流程了，不妨动手试试看。</p>
 </details>
-<h2 id="_5">代码架构</h2>
+<h2 id="_6">代码架构</h2>
 <h3 id="ansih-debugh">玩转宏定义：<code>ansi.h</code> 与 <code>debug.h</code></h3>
 <h3 id="minitui">面向对象初步：Minitui 组件库</h3>
-<h3 id="_6">代码整体架构大观</h3>
-<h3 id="_7">本部分思考题</h3>
-<h4 id="_8">代码组织与构建</h4>
+<h3 id="_7">代码整体架构大观</h3>
+<h3 id="_8">本部分思考题</h3>
+<h4 id="_9">代码组织与构建</h4>
 <ul>
 <li>假设现欲添加一个名为 <code>glob_value</code> 的 <code>int</code> 类型全局变量，并要求源代码通过包含一个头文件 <code>glob_value.h</code> 就可以访问该变量，<code>glob_value.h</code> 里应该如何写？源代码应该作何修改（可以添加新文件）？</li>
 <li>指出 <code>Makefile</code> 中 <code>CXXFLAGS</code> 变量最终的值。假设要为游戏的所有源代码文件增加一个 <code>common/include</code> 的 <code>#include</code> 搜索路径，应该如何修改 <code>Makefile</code> （当然，你不要真的修改 <code>Makefile</code>）？</li>
 <li><code>ansi.h</code> 并未被 <code>Makefile</code> 文件中的代码指定为任何目标的依赖，本身也没有被指定为目标。为什么在修改 <code>ansi.h</code> 后，执行 <code>make compile</code> 会导致部分源代码被重新编译？或者说，<code>Makefile</code> 是如何识别头文件依赖的？你的回答应该尽可能详细。
 <br />提示：查看编译后 <code>build</code> 目录下的 <code>*.d</code> 文件，并查阅 <code>g++</code> 中 <code>-MMD</code> 命令的作用。</li>
 </ul>
-<h4 id="_9">玩转宏定义</h4>
+<h4 id="_10">玩转宏定义</h4>
 <ul>
 <li><code>"\033[?1049h"</code> 可以启用所谓的备用缓冲区。请用 <code>ansi.h</code> 中定义的宏写出启用备用缓冲区的代码，你的代码应该尽可能短。</li>
 <li>解释 <code>## __VA_ARGS__</code> 的意思。为什么 <code>debug.h</code> 中使用 <code>## __VA_ARGS__</code> 而不是 <code>__VA_ARGS__</code> ？</li>
@@ -2689,12 +2706,12 @@
 </code></pre></div>
 兼容 MacOS 后，条件编译代码应该写作什么形式？</li>
 </ul>
-<h4 id="_10">面向对象初步</h4>
+<h4 id="_11">面向对象初步</h4>
 <ul>
 <li>列出 <code>mainscr</code> 类的所有成员变量和函数，并分别指出它们是被继承关系上的哪个类定义的。如果是虚函数，分别指出该虚函最初继承自哪个抽象类，并是在哪个类被实现的？</li>
 <li>菱形继承和虚继承是 C++ 继承机制中最麻烦的一环，容易产生错综复杂，难以理清的编译问题。上网查询资料，哪些面向对象的高级语言对此进行了改进？进行了什么改进？</li>
 </ul>
-<h4 id="_11">附加题</h4>
+<h4 id="_12">附加题</h4>
 <ul>
 <li>学习 <code>sed</code>。<code>Makefile</code> 编译 <code>%.cpp</code> 时采用了如下规则：
 <div class="highlight"><pre><span></span><code><span class="nf">$(BUILD_DIR)/%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span>
