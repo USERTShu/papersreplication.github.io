@@ -2335,14 +2335,28 @@
         
           <li class="md-nav__item">
   <a href="#makefile_1" class="md-nav__link">
-    Makefile 的变量和函数
+    Makefile 中的模式匹配：* 与 %
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
-    生成规则
+    模式规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#makefile_2" class="md-nav__link">
+    Makefile 变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#makefile_3" class="md-nav__link">
+    Makefile 函数
   </a>
   
 </li>
@@ -2782,14 +2796,28 @@
         
           <li class="md-nav__item">
   <a href="#makefile_1" class="md-nav__link">
-    Makefile 的变量和函数
+    Makefile 中的模式匹配：* 与 %
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
-    生成规则
+    模式规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#makefile_2" class="md-nav__link">
+    Makefile 变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#makefile_3" class="md-nav__link">
+    Makefile 函数
   </a>
   
 </li>
@@ -3078,7 +3106,7 @@
 <li><strong>依赖（prerequisites）。</strong>表示目标所依赖的文件（可以是其他目标）。</li>
 <li><strong>制法（recipe）。</strong>表示生成一个目标需要执行的命令。</li>
 </ul>
-<p>以上三部分合起来描述了目标及目标的生成方法，并构成了 Makefile 的一个基本执行单元，格式如下：</p>
+<p>以上三部分合起来描述了目标及目标的生成方法，并构成了 Makefile 的一个基本执行单元（本文称其为「规则」），格式如下：</p>
 <div class="highlight"><pre><span></span><code><span class="nf">target ... </span><span class="o">:</span><span class="w"> </span><span class="n">prerequisites</span> ...
 <span class="w">    </span>recipe
 <span class="w">    </span>...
@@ -3087,28 +3115,81 @@
 <p>Makefile 生成一个目标时，会先检查依赖是否存在，或者是需要构建的目标，如果是需要构建的目标则递归生成目标。</p>
 <p>然后 Makefile 检查目标及所有依赖的更新时间，如果目标文件不存在，亦或者某一依赖的最后修改时间比目标的最后修改时间要迟，那么 Makefile 就会执行制法中指定的命令。</p>
 <p>Makefile 中还可以定义所谓的<strong>伪目标</strong>。伪目标的目标名并不是真正的文件，而只是一个<em>操作名</em>，它被 Makefile 生成时不会产生对应的目标文件，只会执行对应的制法。Makefile 会试图自动识别哪些目标是伪目标，你也可以用 <code>.PHONY: targets</code> 来指定。</p>
+<details class="info" open="open">
+<summary>附加依赖</summary>
+<p>Makefile 的语法很灵活。你可以在定义一个规则的前后为目标添加其它依赖。语法形如 <code>target ... : prerequisites ...</code>，不需要添加 <code>recipe</code>。</p>
+</details>
 <details class="example" open="open">
 <summary>结合实际</summary>
 <p>试试阅读项目的 Makefile，你发现了哪些目标？这些目标的依赖关系是怎样的？哪些目标是伪目标？</p>
 <p>你现在可能还看不懂部分 <code>$(OBJ)</code> 之类的变量名，可以暂时跳过它们。</p>
 </details>
-<h5 id="makefile_1">Makefile 的变量和函数</h5>
-<p>为了增加灵活性及便利性，Makefile 还提供了变量和函数供编程者利用。Makefile 的变量本质上是字符串，引用变量的方式是 <code>$</code>，如果一个变量名是 <code>VAR</code>，对其值的引用就是 <code>$(VAR)</code>。</p>
-<p>它按照三种方法进行定义：</p>
+<h5 id="makefile_1">Makefile 中的模式匹配：<code>*</code> 与 <code>%</code></h5>
+<p>大家也许在理论课堂上已经学过了正则表达式或类似的模式匹配机制。模式匹配能令我们利用计算机迅速筛选出一类符合要求的字符串。</p>
+<p>最常用的模式匹配方法是利用通配符来匹配：一个通配符可以匹配空串或任意大小的串，也即「通用匹配」，相当于<a href="https://www.runoob.com/regexp/regexp-tutorial.html">正则表达式</a>中的 <code>.*</code>。在多数场景中，通配符是 <code>*</code>，可以试试在项目根目录执行 <code>echo minitui/include/*.h</code>，感受一下通配符的作用。</p>
+<p>而在 Makefile 中，通配符是 <code>%</code> 或 <code>*</code>。其中，<code>%</code> 是一个「对应」的通配符——在同一上下文中，<code>%</code> 匹配一次后，后续出现的 <code>%</code> 代表着和第一个 <code>%</code> 相同的值。于是，后续多个含有 <code>%</code> 的模式就像是一种以通配字符串为词根的「派生模式」。</p>
+<p>上述模式能方便地用于进行<strong>模式替换</strong>（将匹配串替换为某一派生串）和<strong>模式规则定义</strong>（一种为某一模式的目标批量定义规则的方法，其中依赖由目标的派生串指定）。我们会在后面提及它们。</p>
+<h5 id="_9">模式规则</h5>
+<p>Makefile 具有为同一模式的文件批量类似的规则的功能，我们将其称为模式规则。模式规则利用 <code>%</code> 通配符匹配某一规则的目标，然后对它进行派生以得到依赖列表。举个简单的例子，我们希望将所有的 <code>.c</code> 文件编译为同目录下的同名 <code>.o</code> 文件，于是我们可以写出这样的模式：</p>
+<div class="highlight"><pre><span></span><code><span class="nf">%.c </span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>
+</code></pre></div>
+<p>模式规则的目标</p>
+<h5 id="makefile_2">Makefile 变量</h5>
+<p>我们在上文提及了一些 Makefile 的特殊变量，现在我们来详细介绍一下 Makefile 变量。</p>
+<p>Makefile 的变量本质上是字符串，引用变量的方式是 <code>$</code>，如果一个变量名是 <code>VAR</code>，对其值的引用就是 <code>$(VAR)</code>。</p>
+<p>它按照四种方法进行定义：</p>
 <ul>
-<li>递归赋值。<code>VAR=EXPR</code> 表示定义 <code>VAR</code> 为 <code>EXPR</code>，<code>EXPR</code> 中可以含有变量，其值使用的是<strong>最终的</strong>变量值。也就是会递归计算完引用的变量的变量值再计算 <code>VAR</code> 的值。<em>这种方法可能导致死循环，应当避免循环引用。</em></li>
-<li>直接赋值。<code>VAR:=EXPR</code> 同样表示定义 <code>VAR</code> 为 <code>EXPR</code>，但引用变量使用的是<strong>当前的</strong>变量值。</li>
-<li>追加赋值。<code>VAR+=EXPR</code> 表示在 <code>VAR</code> 的后面添加一个空格和 <code>EXPR</code> 的值。引用的变量如果未定义，则采用递归赋值风格，否则以该变量定义时使用的赋值风格为准。</li>
+<li><strong>递归赋值。</strong><code>VAR=EXPR</code> 表示定义 <code>VAR</code> 为 <code>EXPR</code>，<code>EXPR</code> 中可以含有变量，其值使用的是<strong>最终的</strong>变量值。也就是会递归计算完引用的变量的变量值再计算 <code>VAR</code> 的值。<em>这种方法可能导致死循环，应当避免循环引用。</em></li>
+<li><strong>直接赋值。</strong><code>VAR:=EXPR</code> 同样表示定义 <code>VAR</code> 为 <code>EXPR</code>，但引用变量使用的是<strong>当前的</strong>变量值。</li>
+<li><strong>追加赋值。</strong><code>VAR+=EXPR</code> 表示在 <code>VAR</code> 的后面添加一个空格和 <code>EXPR</code> 的值。引用的变量如果未定义，则采用递归赋值风格，否则以该变量定义时使用的赋值风格为准。</li>
+<li><strong>缺省赋值。</strong><code>VAR?=EXPR</code> 表示当 <code>VAR</code> 此时未定义时将 <code>VAR</code> 定义为 <code>EXPR</code>。</li>
 </ul>
 <p>Makefile 中可以使用系统内的环境变量。但同名变量以 Makefile 内定义的为优先。</p>
-<p>变量还有一些特殊规则，比如模式替换 <code>$(VAR:%.o=%.c)</code> 表示将所有 <code>.o</code> 结尾的子串替换为 <code>.c</code> 结尾。</p>
-<details class="info" open="open">
-<summary>通配符的使用</summary>
-<p>大家也许在理论课堂上已经学过了正则表达式或类似的模式匹配机制。模式匹配能令我们利用计算机迅速筛选出一类符合要求的字符串。而最常见和最广受支持的模式匹配机制就是通配符机制：一个通配符可以匹配空串或任意大小的串，也即「通用匹配」，相当于<a href="https://www.runoob.com/regexp/regexp-tutorial.html">正则表达式</a>中的 <code>.*</code>。常见的通配符是 <code>*</code>，可以试试在项目根目录执行 <code>echo minitui/include/*.h</code>，感受一下通配符的作用。</p>
-<p>而在 Makefile 中，通配符则是 <code>%</code>。不过 Makefile 要求在同一命令或目标-依赖关系中，<code>%</code> 所匹配的字符串的是一样的。</p>
+<p>同时，变量还有作用域之分。普通定义的变量是只在本文件中生效的，而有些变量则是<strong>可继承的</strong>，在 recipe 中执行的 <code>make</code> 子进程会继承它们的值。为定义可继承的变量，可以利用 <code>export</code> 关键字来修饰变量定义，或在 <code>make</code> 时利用 <code>make VAR=XXX</code> 指定变量的值。另外，可以用 <code>override</code> 关键字来覆盖从父进程继承的变量。</p>
+<p>值得一提的是，Makefile 中还有变量内联模式替换的语法，如 <code>$(VAR:%.o=%.c)</code> 能将所有 <code>VAR</code> 中 <code>.o</code> 结尾的元素替换为 <code>.c</code> 结尾。</p>
+<ul>
+<li><strong>特殊变量。</strong>它们在一个规则中有着特定的取值，方便编写者引用特定变量的值。<ul>
+<li><code>$@</code>：目标。</li>
+<li><code>$&lt;</code>：第一个依赖。</li>
+<li><code>$^</code>：所有的依赖（去重）。</li>
+<li><code>$+</code>：所有的依赖（不去重）。</li>
+<li><code>$?</code>: 所有比目标更新的依赖。</li>
+<li>``</li>
+</ul>
+</li>
+</ul>
+<details class="question" open="open">
+<summary>什么是元素？</summary>
+<p>在 Makefile 中，元素是字符串（变量或常量）中以空格为边界的子串（其实一般把它们叫做 token，这里姑且译作元素）。下文将字符串作为函数参数时，它被视为以空格分隔的元素的列表。当我们需要组合多个元素时，也将它们用空格分隔拼接成字符串（比如上文<code>$^</code>，在引用它时所有依赖就以空格组合为一个字符串）。</p>
 </details>
-<h5 id="_9">生成规则</h5>
+<h5 id="makefile_3">Makefile 函数</h5>
+<p>Makefile 还有一些内置函数供编写者引用。函数引用的格式和变量引用相似，即 <code>$(func args...)</code>，其中参数按照要求以逗号分隔。我们列举几个典型的内置函数，其他的内置函数大家在碰到时自行搜索或者在文档中查询：</p>
+<ul>
+<li>字符串/路径处理函数。<ul>
+<li><code>$(basename STRS)</code> 将 STRS 每个元素去除后缀名后的结果返回。</li>
+<li><code>$(patsubst PAT1, PAT2, STRS)</code> 将 STRS 中符合模式 PAT1 的元素替换为模式 PAT2 后返回。</li>
+<li><code>$(addprefix PREFIX, STRS)</code>，将 STRS 的所有元素添加 PREFIX 作为前缀后返回。 </li>
+<li><code>$(wildcard PAT)</code>，将搜索路径中所有符合 PAT 模式的路径或文件名返回。</li>
+</ul>
+</li>
+<li>打印输出函数。<ul>
+<li><code>$(error MSG)</code>。</li>
+<li><code>$(warning MSG)</code>。</li>
+<li><code>$(echo MSG)</code>。</li>
+</ul>
+</li>
+<li>Shell 调用函数。<ul>
+<li><code>$(shell cmd)</code>，执行 <code>cmd</code> 对应的 Shell 命令，并将其输出的内容返回。
+<br /><em>注意命令中的 <code>$</code> 需用 <code>$$</code> 转义。</em></li>
+</ul>
+</li>
+</ul>
 <h5 id="_10">条件判定</h5>
+<p>Makefile 具有利用变量进行条件判断的功能。</p>
+<details class="example" open="open">
+<summary>结合实际</summary>
+<p>阅读项目 Makefile 中的条件判断语句，你觉得它们起到了什么功能？</p>
+</details>
 <details class="note" open="open">
 <summary>进一步学习</summary>
 <p>要进一步了解 Makefile 的编写和 Make 的使用，可以参考两样资料。</p>
