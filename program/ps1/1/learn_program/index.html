@@ -2446,22 +2446,22 @@
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    多源文件程序的构建
+    可执行程序的构建
   </a>
   
-    <nav class="md-nav" aria-label="多源文件程序的构建">
+    <nav class="md-nav" aria-label="可执行程序的构建">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    构建可执行程序的流程
+    构建流程
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    符号与目标文件编译
+    目标文件编译与符号
   </a>
   
 </li>
@@ -2894,22 +2894,22 @@
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    多源文件程序的构建
+    可执行程序的构建
   </a>
   
-    <nav class="md-nav" aria-label="多源文件程序的构建">
+    <nav class="md-nav" aria-label="可执行程序的构建">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    构建可执行程序的流程
+    构建流程
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    符号与目标文件编译
+    目标文件编译与符号
   </a>
   
 </li>
@@ -3147,7 +3147,7 @@
 </details>
 <h4 id="_3">头文件的搜索路径</h4>
 <p>在引用头文件如 <code>cstdio.h</code> 时，我们发现头文件既不在代码文件对应的目录下，也不在 <code>PATH</code> 环境变量所指定的路径下，GCC 到底是从哪里找到这个文件的呢？</p>
-<p>如果你使用带语法提示的编辑器或 IDE，那么在代码文件中你可能发现引用诸如 <code>ansi.h</code> 或 <code>basics.h</code> 时会被标红线，提示找不到该文件，但编译时却可以通过，这是为什么呢？</p>
+<p>如果你使用带语法提示的编辑器或 IDE，那么在没有预先配置的情形下你可能会发现引用诸如 <code>ansi.h</code> 或 <code>basics.h</code> 时会被标红线，提示找不到该文件，但编译却可以通过，这是为什么呢？</p>
 <p>这些都和 <code>#include&lt;$FILE&gt;</code> 时编译器的搜索路径有关。在这一格式的命令中，编译器会从标准库 <code>include</code> 路径下寻找对应的文件，然后从用户指定的 <code>include</code> 路径中寻找文件。如果你执行 <code>echo | gcc -xc++ -E -v -</code> 命令，你将会看到：</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#include &lt;...&gt; search starts here:</span>
 <span class="w"> </span>/usr/lib/gcc/x86_64-pc-msys/11.3.0/include/c++
@@ -3159,9 +3159,9 @@
 <span class="w"> </span>/usr/lib/gcc/x86_64-pc-msys/11.3.0/../../../../lib/../include/w32api
 </code></pre></div>
 <p>要想增加 <code>#include&lt;&gt;</code> 的搜索路径，可以使用 GCC 提供的 <code>-I</code> 选项，试试执行 <code>echo | gcc -xc++ -E -v -I . -</code>，输出结果出现了什么不同？</p>
-<h3 id="_4">多源文件程序的构建</h3>
+<h3 id="_4">可执行程序的构建</h3>
 <p><em>本部分为了切合大家的学习阶段作了简化。在《计算机系统基础》中大家会学习到更详细的内容。</em></p>
-<h4 id="_5">构建可执行程序的流程</h4>
+<h4 id="_5">构建流程</h4>
 <p>在<a href="http://cslabcms.nju.edu.cn/problem_solving/images/a/a1/Lecture1-6_2019-11-12_%E5%A6%82%E4%BD%95%E5%B0%86%E7%AE%97%E6%B3%95%E5%91%8A%E8%AF%89%E8%AE%A1%E7%AE%97%E6%9C%BA.pptx">理论课堂</a>上，我们已经知道了「将程序告诉计算机」的方式——二进制代码。在课堂上，我们还看到了编程语言从机器语言、汇编语言再到高级程序设计语言的演进。</p>
 <p>而在可执行程序的构建中，我们则是反其道而行之——从高级程序设计语言的源文件，得到汇编语言文件，再得到二进制代码文件。</p>
 <p>但是，对于多源文件的程序，它又是怎么样构建成一个二进制程序的呢？是先合并源代码，再统一翻译，还是在每份源代码翻译之后链接呢？下面我们就来介绍。</p>
@@ -3174,15 +3174,20 @@
 </ul>
 <p>上述流程可以被表示为：</p>
 <p><img alt="构建流程" src="../../../../pics/project-1-1.png" /></p>
-<p>GCC 提供了细粒度地控制构建流程的选项，展示如下：</p>
+<p>GCC 提供了精细控制构建流程的选项，展示如下：</p>
 <div class="highlight"><pre><span></span><code>-E      Preprocess only; do not compile, assemble or link.
 -S      Compile only; do not assemble or link.
 -c      Compile and assemble, but do not link.
 </code></pre></div>
 <p>在现阶段，我们不是很关心预处理、编译所得到的中间产物。因此为方便起见，我们把预处理、编译、汇编三步（图上显示的「翻译器」过程）统称为编译，即把一个源代码文件翻译成一个目标文件的过程。</p>
-<p>多源文件的编程事实上是一种<strong>模块化编程</strong>。我们把每个源文件对应的部分称为一个<strong>模块</strong>。</p>
-<h4 id="_6">符号与目标文件编译</h4>
-<p>容易推想，在模块化编程中，模块之间不可能是完全相互独立的：一个模块可能需要用到别的模块的<strong>全局变量</strong>或函数，也可能需要提供变量和函数供其他模块使用。</p>
+<p>多源文件的编程事实上是一种<strong>模块化编程</strong>。我们把每个源文件对应的部分称为一个<strong>模块</strong>。一个模块有对应的源代码文件（C/C++ 源代码）和目标文件（机器语言，ELF/COFF）</p>
+<h4 id="_6">目标文件编译与符号</h4>
+<p>在这里我们不谈论将模块源代码编译成目标文件的具体方法，但是需要指出的是，目标文件的编译虽然是相互独立的，但是并非将模块源代码简单翻译成对应机器语言而已。</p>
+<p>这是因为模块的运作不是完全相互独立的：一个模块可能需要用到别的模块的<strong>全局变量</strong>或函数（即数据/代码接口），也可能需要提供变量和函数供其他模块使用。这就使得编译器必须在编译目标文件时留下这个模块提供的接口信息，以供链接器在构建最终的可执行程序时能够改写各模块使得</p>
+<details class="example" open="open">
+<summary>为什么需要链接器在链接时改写各模块？为什么编译器不能产生最终的模块代码？</summary>
+<p>请自己思考一下。如果你理解了上面的内容，答案是很明显的。</p>
+</details>
 <p>我们把函数和变量统称为<strong>符号</strong>，上面的问题可以被总结为跨模块的<strong>符号引用</strong>。</p>
 <details class="question" open="open">
 <summary>符号引用在做什么？</summary>
