@@ -2402,6 +2402,8 @@
         
           
         
+          
+        
       
       
         
@@ -2431,7 +2433,21 @@
   
     <li class="md-nav__item">
       <a href="c_make_principle/" class="md-nav__link">
-        代码组织与构建
+        代码组织与程序构建
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="makefile/" class="md-nav__link">
+        Makefile 入门
       </a>
     </li>
   
@@ -2661,68 +2677,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    代码组织与构建
-  </a>
-  
-    <nav class="md-nav" aria-label="代码组织与构建">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#include" class="md-nav__link">
-    头文件和 #include
-  </a>
-  
-    <nav class="md-nav" aria-label="头文件和 #include">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    头文件的搜索路径
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    可执行程序的构建
-  </a>
-  
-    <nav class="md-nav" aria-label="可执行程序的构建">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cc" class="md-nav__link">
-    C/C++ 程序构建流程
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    目标文件编译与符号
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    重定位与链接
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#make" class="md-nav__link">
     运用 Make 进行构建
   </a>
@@ -2745,7 +2699,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     模式规则
   </a>
   
@@ -2766,7 +2720,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     条件语句
   </a>
   
@@ -2776,14 +2730,9 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     代码架构
   </a>
   
@@ -2791,7 +2740,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     代码整体架构大观
   </a>
   
@@ -2806,7 +2755,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     条件编译
   </a>
   
@@ -2830,7 +2779,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     附录：本篇思考题汇总
   </a>
   
@@ -2838,28 +2787,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     代码组织与构建
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     玩转宏定义
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     面向对象初步
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     附加题
   </a>
   
@@ -2922,298 +2871,6 @@
 该怎么编译整个项目？
 要知道这些问题的答案，必须对一些 C/C++ 的高级语法，以及 C/C++ 项目的构建具有基本的知识。</p>
 <p>由此，作为第一阶段的开端，在本部分中我们为大家介绍阅读框架代码所必须的前置知识，并通过阅读代码了解框架代码的大略架构。</p>
-<h2 id="_2">代码组织与构建</h2>
-<p>在第零阶段我们说过，项目中共有两个可执行文件：游戏和启动器。</p>
-<p>启动器是一个单源文件程序，而游戏对应着多份源代码。
-在 OJ 中，大家也许习惯于编写一个源文件而得到对应的程序，但是对于复杂的项目，只使用一个源文件构建得到一个程序是不现实的。
-试想如果一个源文件中有着数万乃至数十万行代码，会使得阅读和维护代码变得多么麻烦？</p>
-<p>因此，我们需要将代码按照模块分成多个文件。
-你可以在如下目录下找到游戏的源代码：<code>test/phase1</code> 和 <code>minitui</code>。</p>
-<p>我们可以用 <code>tree</code> 命令直观展示 <code>minitui</code> 目录的结构：
-<div class="highlight"><pre><span></span><code>Barisore@litrehinn MINGW64 ~/pspj1/minitui
-$ tree
-.
-├── include
-│   ├── ansi.h
-│   ├── basics.h
-│   ├── debug.h
-│   ├── event.h
-│   ├── geometry.h
-│   ├── minitui.h
-│   ├── ui.h
-│   ├── widget.h
-│   └── widgets
-│       ├── canvas.h
-│       ├── dummy.h
-│       ├── formatter.h
-│       └── msgbox.h
-└── source
-    ├── minitui
-    │   ├── event.cpp
-    │   ├── geometry.cpp
-    │   ├── init.cpp
-    │   ├── ui.cpp
-    │   ├── widget.cpp
-    │   └── widgets
-    │       ├── canvas.cpp
-    │       ├── dummy.cpp
-    │       └── msgbox.cpp
-    └── misc
-        └── debug.cpp
-</code></pre></div></p>
-<p>于是你会注意到代码文件分为两类：</p>
-<ul>
-<li><code>.h</code> 结尾的<strong>头文件</strong>（Header File），一般存放在 <code>include</code> 目录下。</li>
-<li><code>.cpp</code> 结尾的<strong>源文件</strong>（Source File），一般存放在 <code>source</code> 目录下。</li>
-</ul>
-<p>下面我们来细讲一下这两类文件的区别和作用，并介绍一下预编译命令以及代码的构建流程。</p>
-<details class="tip" open="open">
-<summary>你的程序真的是「单源文件」的吗？</summary>
-<p>虽然你只编写了一个源代码文件，但编译得到的程序许多功能（如输入/输出，文件读写，系统调用等）并不是在这份源代码中实现的，甚至也不是在你引用的头文件中实现的
-（头文件通常不包含具体的实现，我们在后面的部分会详细谈到）。</p>
-<p>这些功能是在哪里实现的？
-又是如何被你编写的程序所使用的？
-读完「代码组织与构建」部分你将会有所认识。</p>
-</details>
-<h3 id="include">头文件和 <code>#include</code></h3>
-<p>你每次编写的代码的第一行都有可能是 <code>#include &lt;cstdio&gt;</code> 或 <code>#include &lt;iostream&gt;</code> 乃至 <code>#include &lt;bits/stdc++.h&gt;</code>。
-这些尖括号内的文件就是标准库为我们提供的头文件。</p>
-<p>头文件的作用是提供变量的 <code>extern</code> 声明和<a href="../../../../lang/func/">函数声明</a>（这些声明的具体作用我们后面讨论），它一般通过 <code>#include</code> 命令而被引入到程序中（这种引入就是文本替换，并可以递归）。</p>
-<p><code>#include</code> 这种以 <code>#</code> 起始的命令叫做<strong>预编译命令</strong>。
-处理预编译命令是 C/C++ 源文件编译流程的第一步，我们在此后还会遇见其它的预编译命令，它们同样具有重要作用。</p>
-<details class="example" open="open">
-<summary>观察 <code>#include</code> 命令的作用和预编译过程</summary>
-<p>你可以写一个简单的 Hello World 程序（<code>hello.cpp</code>），并使用如下命令指示编译器进行预编译：</p>
-<div class="highlight"><pre><span></span><code>g++<span class="w"> </span>-E<span class="w"> </span>hello.cpp<span class="w"> </span>-o<span class="w"> </span>hello_pre.cpp
-</code></pre></div>
-<p>观察 <code>hello_pre.cpp</code>，你发现了什么？</p>
-</details>
-<h4 id="_3">头文件的搜索路径</h4>
-<p>在引用头文件如 <code>cstdio.h</code> 时，我们发现头文件既不在代码文件对应的目录下，也不在 <code>PATH</code> 环境变量所指定的路径下，GCC 到底是从哪里找到这个文件的呢？</p>
-<p>如果你使用带语法提示的编辑器或 IDE，那么在没有预先配置的情形下你可能会发现引用诸如 <code>ansi.h</code> 或 <code>basics.h</code> 时会被标红线，提示找不到该文件，但编译却可以通过，这是为什么呢？</p>
-<p>这些都和 <code>#include&lt;$FILE&gt;</code> 时编译器的搜索路径有关。
-在这一格式的命令中，编译器会从标准库 <code>include</code> 路径下寻找对应的文件，然后从用户指定的 <code>include</code> 路径中寻找文件。如果你执行 <code>echo | gcc -xc++ -E -v -</code> 命令，你将会看到：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#include &lt;...&gt; search starts here:</span>
-<span class="w"> </span>/usr/lib/gcc/x86_64-pc-msys/11.3.0/include/c++
-<span class="w"> </span>/usr/lib/gcc/x86_64-pc-msys/11.3.0/include/c++/x86_64-pc-msys
-<span class="w"> </span>/usr/lib/gcc/x86_64-pc-msys/11.3.0/include/c++/backward
-<span class="w"> </span>/usr/lib/gcc/x86_64-pc-msys/11.3.0/include
-<span class="w"> </span>/usr/lib/gcc/x86_64-pc-msys/11.3.0/include-fixed
-<span class="w"> </span>/usr/include
-<span class="w"> </span>/usr/lib/gcc/x86_64-pc-msys/11.3.0/../../../../lib/../include/w32api
-</code></pre></div>
-<p>要想增加 <code>#include&lt;&gt;</code> 的搜索路径，可以使用 GCC 提供的 <code>-I</code> 选项。
-试试执行 <code>echo | gcc -xc++ -E -v -I . -</code>，输出结果出现了什么不同？</p>
-<h3 id="_4">可执行程序的构建</h3>
-<p><em>本部分为了切合大家的学习阶段作了简化处理，很多部分并不严谨。在《计算机系统基础》中大家会学习到更详细、严谨的内容。</em></p>
-<p>通过解析 <code>#include</code> 等预编译命令，我们将头文件和源文件合并为许多经过预处理的源文件。
-那么，这些源文件（一个或多个）又是如何被处理为一个可执行程序的呢？
-接下来我们就来介绍。</p>
-<h4 id="cc">C/C++ 程序构建流程</h4>
-<p>在<a href="http://cslabcms.nju.edu.cn/problem_solving/images/a/a1/Lecture1-6_2019-11-12_%E5%A6%82%E4%BD%95%E5%B0%86%E7%AE%97%E6%B3%95%E5%91%8A%E8%AF%89%E8%AE%A1%E7%AE%97%E6%9C%BA.pptx">理论课堂</a>上，我们已经知道了「将程序告诉计算机」的方式——二进制（机器语言）。
-在课堂上，我们还看到了编程语言从机器语言、汇编语言再到高级程序设计语言的演进。</p>
-<p>而在可执行程序的构建中，我们则是反其道而行之——从高级程序设计语言的源文件，得到汇编语言文件，再得到二进制程序。</p>
-<p>在解释构建可执行程序的流程之前，我们再次明确程序的构成：代码和数据。
-这两个组分在高级语言源代码中对应着函数和全局变量。构建可执行程序就是要把高级语言代码描述的代码和数据以约定好的组织形式写入二进制文件之中。</p>
-<details class="info" open="open">
-<summary>提醒</summary>
-<p>在本文中，我们不讨论任何具体文件格式的数据结构规约，也不讨论具体的构建实现细节。
-相对地，我们专注于描述构建流程中各个实体的组成部分及其演变过程，以为构建流程提供一个直观理解。</p>
-</details>
-<p>但是，对于多源文件的程序，它又是怎么样构建成一个二进制程序的呢？是先合并源代码，再统一翻译，还是在每份源代码翻译之后合并呢？下面我们就来介绍。</p>
-<p>可执行程序的构建流程大体可分为预处理、编译、汇编、链接四个步骤，前三步是每份源代码独立经历的。构建只针对源文件而不直接针对头文件。</p>
-<ul>
-<li>预处理 <code>cpp</code>：在这一步，源文件所有的 <code>#</code> 预编译命令都被展开。头文件在此步被引入。</li>
-<li>编译 <code>ccl</code>：在这一步，预处理后的源文件被<strong>分别</strong>编译成汇编代码文件。</li>
-<li>汇编 <code>as</code>：在这一步，汇编代码文件被<strong>分别</strong>编译为可重定位目标文件（<code>.o</code> 文件），在 Windows 平台上，它是 <a href="https://en.wikipedia.org/wiki/COFF0">COFF 格式</a>，在 Linux 平台上，它是 <a href="https://en.wikipedia.org/wiki/Executable_and_Linkable_Format">ELF 格式</a>。</li>
-<li>链接 <code>ld</code>：在这一步，多个可重定位目标文件被<strong>链接</strong>成一个完整的可执行文件，在 Windows 平台上，它是 <a href="https://en.wikipedia.org/wiki/Portable_Executable">PE 格式</a>，即常见的 exe 程序，在 Linux 平台上，它仍是 <a href="https://en.wikipedia.org/wiki/Executable_and_Linkable_Format">ELF 格式</a>。</li>
-</ul>
-<p>上述流程可以被表示为：</p>
-<p><img alt="构建流程" src="../../../../pics/project-1-1.png" /></p>
-<details class="example" open="open">
-<summary><code>error: ld returned 1 exit status</code></summary>
-<p>你也许曾在没有关闭程序而尝试重新构建它时遇到过这个报错，现在你能理解这则错误信息了吗？</p>
-</details>
-<p>GCC 提供了精细控制构建流程的选项，展示如下：</p>
-<div class="highlight"><pre><span></span><code>-E      Preprocess only; do not compile, assemble or link.
--S      Compile only; do not assemble or link.
--c      Compile and assemble, but do not link.
-</code></pre></div>
-<p>我们不是很关心预处理、编译所得到的中间产物。
-为方便起见，我们把预处理、编译、汇编三步（图上显示的「翻译器」过程）统称为编译，即把一个源代码文件翻译成一个目标文件的过程。</p>
-<p>多源文件的编程事实上是一种<strong>模块化编程</strong>。
-我们把每个源文件对应的部分称为一个<strong>模块</strong>。一个模块有对应的源代码文件（C/C++ 源代码）和目标文件（二进制，ELF/COFF）。
-在源代码文件中，模块由函数与全局变量构成。在二进制文件中，与它们相对应的分别是模块的代码和数据。</p>
-<details class="question" open="open">
-<summary>为什么不用 <code>#include</code> 把所有模块的实现在预处理阶段整合到一个头文件中？</summary>
-<p>这是可以做到的。但模块分离编译有其特别的优势在，我们在后面会详细谈及。</p>
-<p>现有的惯用做法中，当我们 <code>#include</code> 某一模块对应的头文件时，一般不在头文件中包含任何模块的具体实现，而仅定义和该模块接口的交互方式和一些常用的宏。</p>
-</details>
-<details class="note" open="open">
-<summary>模块分离编译模式下的闭源/开源</summary>
-<p>因为模块编译过程是互相独立的，因此模块作者可以只提供模块的目标文件和头文件。</p>
-<p>我们把这种不公布源代码的模块叫做<strong>闭源</strong>模块，反之称作<strong>开源</strong>模块。</p>
-</details>
-<p>我们接下来介绍一下编译和链接的原理。</p>
-<h4 id="_5">目标文件编译与符号</h4>
-<p>在这里我们不谈论将模块源代码编译成目标文件的具体方法，也不赘述目标文件的结构细节，需要明确的只是一点：
-目标文件（ELF/COFF）由模块的二进制代码和数据构成，这些代码和数据在运行时处于<a href="https://zh.wikipedia.org/wiki/%E5%86%AF%C2%B7%E8%AF%BA%E4%BC%8A%E6%9B%BC%E7%BB%93%E6%9E%84">计算机</a>的内存之中，但是由于模块编译的独立性，在被其链接以前，其所含代码/数据在内存中最终所处的位置/地址是不确定的。</p>
-<p>然而，模块的运作不是完全相互独立的：
-一个模块可能需要用到别的模块的<strong>全局变量</strong>或函数（即代码/数据），也可能需要提供变量和函数供其他模块使用（这又称<strong><a href="https://zh.wikipedia.org/wiki/%E5%BA%94%E7%94%A8%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%8E%A5%E5%8F%A3">应用二进制接口（ABI）</a></strong>）。
-由于各模块不知道其他模块的代码/数据的在内存中的相对位置/地址，要做到这两件事是十分困难的。</p>
-<p>为了解决这个问题，编译器必须在编译目标文件时，留下这个模块提供的接口信息，以使链接器在构建最终的可执行程序时能够正确改写各模块，从而令模块间能够正常交互。</p>
-<details class="example" open="open">
-<summary>为什么编译器不能产生最终的模块代码而需要链接器在链接时改写各模块？</summary>
-<p>请自己思考一下，确认是否理解了到此为止的讲义内容——如果你理解了，答案是很明显的。</p>
-</details>
-<p>为了解决模块间的互相引用问题，在实践中，我们在目标文件中添加<strong>符号表</strong>与<strong>重定位节</strong>作为额外接口信息。
-其中符号指的是全局变量/函数的名称，重定位节用于存放目标文件中所有引用到外部符号的位置。</p>
-<p>这个设计的原理是：</p>
-<ul>
-<li>当我们通过名称引用一个特定函数/变量（下称符号）时，如果引用的是一个外部符号，编译器并不知道其在最终可执行文件中的确切地址，因此它只能将此符号作为<strong>弱符号</strong>放入目标文件的符号表中，并将目标文件引用符号的位置放入重定位节，以通知链接器在安排模块内存排布后，确定所有符号的确切地址之后改写重定位节指示的部分。</li>
-<li>当我们需要将一个特定符号提供给其他模块使用时，我们首先在模块源代码中<strong>定义</strong>（全局变量或函数实现）该符号，而编译器则会将该符号作为一个<strong>强符号</strong>放入符号表中，来通知链接器某一符号的定义在本模块中，以便其在安排好每个模块的内存排布后，确定每个符号的最终地址。</li>
-</ul>
-<p>加入了这个设计以后，我们可以把上面解决的问题称作<strong>跨模块符号引用</strong>，把编译器生成的带有符号表和重定位节的目标文件称作<strong>可重定位目标文件</strong>，把链接器改写目标文件的过程称作<strong>重定位</strong>。</p>
-<p>但是，编译器并不会无脑把所有没有在本模块中<strong>定义</strong>的符号都当作可能的外部符号。它要求所有符号在使用前都事先<strong>声明</strong>。这是因为，为了将符号引用翻译成机器语言，编译器需要声明来知道<strong>一个符号的引用方法</strong>（符号是函数还是变量，是什么类型，有哪些参数）？</p>
-<p>声明包括名称（也就是函数或变量名），类型（变量类型或函数原型），性质（静态/全局）。
-如上所述，声明意味着定义一个<strong>弱符号</strong>，一个程序可以在多个模块中同时存在多个同名弱符号，不过一个模块内不可以包含互相冲突的同名声明。这种安排是因为不同模块可以按照不同方式解读一个相同的符号（地址），但每个模块中解读一个符号的方式必须是一贯的。而定义意味着实现一个<strong>强符号</strong>，一个程序中至多存在一个同名强符号，强符号表示一个符号最终指向的内容。</p>
-<p>事实上，头文件在跨模块符号引用中起到了重要的作用——与某个模块对应的头文件（如 <code>stdio.h</code> 对应 <code>stdio</code>）包含了其提供的接口的所有符号声明。接下来我们会在补充窗格中详细提及。</p>
-<details class="note" open="open">
-<summary>声明/实现的例子</summary>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">函数</label><label for="__tabbed_1_2">变量</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>这是一个函数的声明：
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">fun</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-</code></pre></div>
-这告诉编译器该函数在调用前需要提供一个 <code>char *</code> 参数和一个 <code>int</code> 参数，并具有一个 <code>int</code> 返回值。</p>
-<p>这是一个函数的实现：
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">fun</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">n</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-声明和实现可以位于同一个文件中。
-因为编译器是从前往后处理文件的，因此若函数 <code>A</code> 和函数 <code>B</code> 相互调用，那么先实现的函数就必须在后实现的函数之前引用后者。
-这时可以借助声明来提前告知编译器函数的调用方法：</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">B</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span><span class="w">        </span><span class="c1">// 函数 B 的声明</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">A</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ttl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ttl</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>
-<span class="w">    </span><span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;(&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">B</span><span class="p">(</span><span class="n">ttl</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;)&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">B</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ttl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ttl</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span>
-<span class="w">    </span><span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;[&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="n">ttl</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;]&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<p>这是一个全局变量的声明：
-<div class="highlight"><pre><span></span><code><span class="k">extern</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
-</code></pre></div>
-<code>extern</code> 关键字表示这是一个声明而非一个定义。</p>
-<p>注意，这是一个全局变量的<strong>定义</strong>：
-<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
-</code></pre></div>
-同时，这是一个性质为静态的变量，这意味着该符号对外部不可见，也不会发生重名冲突（本地符号）。</p>
-</div>
-</div>
-</div>
-</details>
-<details class="example" open="open">
-<summary>本部分实战</summary>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">a.c</label><label for="__tabbed_2_2">b.c</label><label for="__tabbed_2_3">c.c</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="c1">// 一个浮点数变量定义</span>
-<span class="kt">float</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span>
-<span class="c1">// 一个整数变量定义</span>
-<span class="c1">// 奇怪但有用的初始值</span>
-<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mh">0x310fll</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;0x%08x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<span class="k">extern</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lf</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>现在我们有如上三个 C 源代码文件，我们首先关心如何将这些源文件编译为目标文件。</p>
-<p>我们选择使用 <code>make</code> 来自动编译，即执行 <code>make</code> + 目标文件列表。</p>
-<p><code>make</code> 内置了一些常见文件的生成规则，这里请注意观察 <code>make</code> 的自动命令回显：</p>
-<div class="highlight"><pre><span></span><code>$ make a.o b.o c.o
-cc    -c -o a.o a.c
-cc    -c -o b.o b.c
-cc    -c -o c.o c.c
-</code></pre></div>
-<p>接下来我们链接 <code>a.o</code> 与 <code>b.o</code> 生成可执行文件 <code>exp</code>，并将其执行：
-<div class="highlight"><pre><span></span><code>$ gcc a.o b.o -o exp; ./exp
-0x4048f5c3
-</code></pre></div>
-在 <code>a.o</code> 模块定义的浮点数变量 <code>a</code> 在 <code>b.o</code> 模块中被作为一个整数变量解释。</p>
-<p>反之同理，我们链接 <code>a.o</code> 与 <code>c.o</code>：</p>
-<div class="highlight"><pre><span></span><code>$ gcc a.o c.o -o exp; ./exp
--516508834063867445248.000000
-</code></pre></div>
-<p>如果我们同时链接这三个目标文件，则会遇到一个报错：</p>
-<div class="highlight"><pre><span></span><code>$ gcc a.o b.o c.o
-/bin/ld: c.o: in function `main&#39;:
-c.c:(.text+0x0): multiple definition of `main&#39;; b.o:b.c:(.text+0x0): first defined here
-collect2: error: ld returned 1 exit status
-</code></pre></div>
-<p>仔细读读这条报错信息，你知道它是为什么产生的吗？</p>
-<p>答案：<span class="heimu" title="你知道的太多了">这是因为链接器 ld 遇到了超过一个同名强符号，它们互相冲突而产生了错误。</span></p>
-</details>
-<details class="note" open="open">
-<summary>回顾头文件：接口声明的集合</summary>
-<p>上面谈到，一个模块可能实现了若干它希望被其他模块使用的函数和变量，我们把它们称作<strong>接口</strong>。当其他模块需要使用接口时，需要提供接口的声明。比如，<code>stdio</code> 模块实现了函数 <code>puts</code>，那么其他模块使用该函数时，就需要写上 <code>puts</code> 的声明，即 <code>int puts(const char *)</code>：</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">puts</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">);</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="n">puts</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>这样，编译器就会将 <code>puts</code> 视为一个外部符号，并要求链接器在重定位时再将其改为具体的符号引用。</p>
-<p>但是对于模块的使用者而言，逐个写出需要使用的模块符号声明显然不现实：不仅麻烦，而且使用者可能根本不知道符号的具体声明（如果模块编写者不公布源代码又没有对应的文档）。因此，模块编写者将所有接口的声明都写入一个头文件，并且公布出来供使用模块的人直接通过 <code>#include</code> 方式包含进其源代码。</p>
-<p>对于 <code>stdio</code> 模块，对应其接口声明的头文件就是 <code>stdio.h</code>（C）或 <code>cstdio</code>（C++），里面包含了所有 <code>stdio</code> 接口的声明，<code>puts</code> 自然也在其中。于是，我们可以修改上文看到的 Hello World 程序：</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="n">puts</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>这就是我们所常见的 Hello World 程序的形式了。经由上述内容，我们写代码必带的头文件总算解开了其神秘的面纱：它是对应模块接口声明的集合。</p>
-</details>
-<h4 id="_6">重定位与链接</h4>
-<p>TODO：库函数到底实现在哪</p>
-<p>TODO：介绍动态链接</p>
-<details class="question" open="open">
-<summary>为什么通过链接来合并模块，而非直接合并模块的源代码一次性编译？</summary>
-<ul>
-<li><strong>节约构建时间。</strong>如果合并源码编译，那么每进行一次修改，就要重新完整编译一次项目（甚至连着标准库的源码一起）。如果每个模块分别编译可以只重新编译改变了的模块，并重新进行链接。</li>
-<li><strong>允许闭源提供模块。</strong>有些商业公司并不希望你在使用他们开发的模块时得到他们的高级语言源码，直接提供二进制模块文件可以避免这一点。</li>
-<li><strong>方便动态链接。</strong>如果编译前就需要知道所有模块的源代码，那么无法进行动态链接，相同模块的二进制代码无法在运行时复用。</li>
-</ul>
-</details>
-<details class="example" open="open">
-<summary>手动构建项目</summary>
-<p>之前我们说过可以通过 <code>make -n</code> 来查看项目构建时 <code>make</code> 运行的命令。</p>
-<p>假设 <code>make</code> 不存在，你应该如何构建整个项目呢？既然你已经了解了项目构建的流程了，不妨动手试试看。</p>
-</details>
 <h3 id="make">运用 Make 进行构建</h3>
 <p>一条条手动运行构建项目的命令既麻烦又容易出错。我们在<a href="../../0/complete_shell">第零阶段</a>介绍了可用于构建的自动化工具 Make 来帮我们解决这一难题。在学习了构建项目的流程之后，现在我们进一步学习如何利用 Make 来自动化构建项目。</p>
 <p>首先，在某一目录下执行 <code>make</code> 命令时，<code>make</code> 会自动寻找指定目录（默认是当前目录，当然也可以通过 <code>-C DIRECTORY</code> 指定）下寻找 <code>Makefile</code> 或 <code>makefile</code> 文件，并按照其中的指示来执行项目的构建。可以看出，运用 Make 的核心就是学会编写 Makefile。</p>
@@ -3252,7 +2909,7 @@ collect2: error: ld returned 1 exit status
 <p>最常用的模式匹配方法是利用通配符来匹配：一个通配符可以匹配空串或任意大小的串，也即「通用匹配」，相当于<a href="https://www.runoob.com/regexp/regexp-tutorial.html">正则表达式</a>中的 <code>.*</code>。在多数场景中，通配符是 <code>*</code>，可以试试在项目根目录执行 <code>echo minitui/include/*.h</code>，感受一下通配符的作用。</p>
 <p>而在 Makefile 中，通配符是 <code>%</code> 或 <code>*</code>。其中，<code>%</code> 是一个「对应」的通配符——在同一上下文中，<code>%</code> 匹配一次后，后续出现的 <code>%</code> 代表着和第一个 <code>%</code> 相同的值。于是，后续多个含有 <code>%</code> 的模式就像是一种以通配字符串为词根的「派生模式」。</p>
 <p>上述模式能方便地用于进行<strong>模式替换</strong>（将匹配串替换为某一派生串）和<strong>模式规则定义</strong>（一种为某一模式的目标批量定义规则的方法，其中依赖由目标的派生串指定）。我们会在后面提及它们。</p>
-<h4 id="_7">模式规则</h4>
+<h4 id="_2">模式规则</h4>
 <p>Makefile 具有为同一模式的文件批量类似的规则的功能，我们将其称为模式规则。模式规则利用 <code>%</code> 通配符匹配某一规则的目标，然后对它进行派生以得到依赖列表。举个简单的例子，我们希望将所有的 <code>.c</code> 文件编译为同目录下的同名 <code>.o</code> 文件，于是我们可以写出这样的模式规则：</p>
 <div class="highlight"><pre><span></span><code><span class="nf">%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">c</span>
 <span class="w">    </span>gcc<span class="w"> </span>%.c<span class="w"> </span>-o<span class="w"> </span>%.o
@@ -3314,7 +2971,7 @@ collect2: error: ld returned 1 exit status
 <summary>结合实际</summary>
 <p>阅读项目代码，现在你能够看懂项目</p>
 </details>
-<h4 id="_8">条件语句</h4>
+<h4 id="_3">条件语句</h4>
 <p>Makefile 具有通过条件语句选择性保留代码的功能。其基本格式如下：</p>
 <div class="highlight"><pre><span></span><code>if-statement (condition)
     ...
@@ -3355,25 +3012,25 @@ endif
 </li>
 </ul>
 </div>
-<h2 id="_9">代码架构</h2>
-<h3 id="_10">代码整体架构大观</h3>
+<h2 id="_4">代码架构</h2>
+<h3 id="_5">代码整体架构大观</h3>
 <h3 id="ansih-debugh">玩转宏定义：<code>ansi.h</code> 与 <code>debug.h</code></h3>
-<h4 id="_11">条件编译</h4>
+<h4 id="_6">条件编译</h4>
 <p>条件编译是代码跨平台的重要保证。</p>
 <h3 id="minitui">从结构体到面向对象：Minitui 组件库</h3>
 <p>大家在 OJ 的练习中，一定已经使用过了结构体的语法。我们现在来回顾一下结构体的定义：</p>
 <ul>
 <li>结构体是一个自定义数据类型。我们知道 C/C++ 中有一些<em>基础数据类型</em>，如 <code>int</code>, <code>float</code></li>
 </ul>
-<h2 id="_12">附录：本篇思考题汇总</h2>
-<h3 id="_13">代码组织与构建</h3>
+<h2 id="_7">附录：本篇思考题汇总</h2>
+<h3 id="_8">代码组织与构建</h3>
 <ul>
 <li>假设现欲添加一个名为 <code>glob_value</code> 的 <code>int</code> 类型全局变量，并要求源代码通过包含一个头文件 <code>glob_value.h</code> 就可以访问该变量，<code>glob_value.h</code> 里应该如何写？源代码应该作何修改（可以添加新文件）？</li>
 <li>指出 <code>Makefile</code> 中 <code>CXXFLAGS</code> 变量最终的值。假设要为游戏的所有源代码文件增加一个 <code>common/include</code> 的 <code>#include</code> 搜索路径，应该如何修改 <code>Makefile</code> （当然，你不要真的修改 <code>Makefile</code>）？</li>
 <li><code>ansi.h</code> 并未被 <code>Makefile</code> 文件中的代码指定为任何目标的依赖，本身也没有被指定为目标。为什么在修改 <code>ansi.h</code> 后，执行 <code>make compile</code> 会导致部分源代码被重新编译？或者说，<code>Makefile</code> 是如何识别头文件依赖的？你的回答应该尽可能详细。
 <br />提示：查看编译后 <code>build</code> 目录下的 <code>*.d</code> 文件，并查阅 <code>g++</code> 中 <code>-MMD</code> 命令的作用。</li>
 </ul>
-<h3 id="_14">玩转宏定义</h3>
+<h3 id="_9">玩转宏定义</h3>
 <ul>
 <li><code>"\033[?1049h"</code> 可以启用所谓的备用缓冲区。请用 <code>ansi.h</code> 中定义的宏写出启用备用缓冲区的代码，你的代码应该尽可能短。</li>
 <li>解释 <code>## __VA_ARGS__</code> 的意思。为什么 <code>debug.h</code> 中使用 <code>## __VA_ARGS__</code> 而不是 <code>__VA_ARGS__</code> ？</li>
@@ -3386,12 +3043,12 @@ endif
 </code></pre></div>
 兼容 MacOS 后，条件编译代码应该写作什么形式？</li>
 </ul>
-<h3 id="_15">面向对象初步</h3>
+<h3 id="_10">面向对象初步</h3>
 <ul>
 <li>列出 <code>mainscr</code> 类的所有成员变量和函数，并分别指出它们是被继承关系上的哪个类定义的。如果是虚函数，分别指出该虚函最初继承自哪个抽象类，并是在哪个类被实现的？</li>
 <li>菱形继承和虚继承是 C++ 继承机制中最麻烦的一环，容易产生错综复杂，难以理清的编译问题。上网查询资料，哪些面向对象的高级语言对此进行了改进？进行了什么改进？</li>
 </ul>
-<h3 id="_16">附加题</h3>
+<h3 id="_11">附加题</h3>
 <ul>
 <li>学习 <code>sed</code>。<code>Makefile</code> 编译 <code>%.cpp</code> 时采用了如下规则：
 <div class="highlight"><pre><span></span><code><span class="nf">$(BUILD_DIR)/%.o </span><span class="o">:</span><span class="w"> </span>%.<span class="n">cpp</span>

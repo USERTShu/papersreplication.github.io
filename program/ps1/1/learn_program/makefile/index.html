@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../1-0-sol/">
+        <link rel="prev" href="../c_make_principle/">
       
       
-        <link rel="next" href="../1-1-sol/">
+        <link rel="next" href="../../draw/">
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
-        <title>讲义 - 2023 级问题求解（程设部分）</title>
+        <title>Makefile 入门 - 2023 级问题求解（程设部分）</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.eebd395e.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -42,9 +42,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/heimu.css">
+      <link rel="stylesheet" href="../../../../../css/heimu.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#debug" class="md-skip">
+        <a href="#make" class="md-skip">
           跳转至
         </a>
       
@@ -89,7 +89,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="2023 级问题求解（程设部分）" class="md-header__button md-logo" aria-label="2023 级问题求解（程设部分）" data-md-component="logo">
+    <a href="../../../../.." title="2023 级问题求解（程设部分）" class="md-header__button md-logo" aria-label="2023 级问题求解（程设部分）" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82Z"/></svg>
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              讲义
+              Makefile 入门
             
           </span>
         </div>
@@ -206,7 +206,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link">
         主版
       </a>
     </li>
@@ -222,8 +222,24 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../start/" class="md-tabs__link">
+      <a href="../../../../../start/" class="md-tabs__link">
         指南
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../oj/" class="md-tabs__link">
+        OJ
       </a>
     </li>
   
@@ -240,23 +256,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../" class="md-tabs__link md-tabs__link--active">
-        OJ
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../program/" class="md-tabs__link">
+      <a href="../../../../" class="md-tabs__link md-tabs__link--active">
         项目
       </a>
     </li>
@@ -272,7 +272,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../lab/" class="md-tabs__link">
+      <a href="../../../../../lab/" class="md-tabs__link">
         Lab
       </a>
     </li>
@@ -306,7 +306,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="2023 级问题求解（程设部分）" class="md-nav__button md-logo" aria-label="2023 级问题求解（程设部分）" data-md-component="logo">
+    <a href="../../../../.." title="2023 级问题求解（程设部分）" class="md-nav__button md-logo" aria-label="2023 级问题求解（程设部分）" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82Z"/></svg>
@@ -357,7 +357,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../..">主版</a>
+          <a href="../../../../..">主版</a>
           
             <label for="__nav_1">
               <span class="md-nav__icon md-icon"></span>
@@ -400,7 +400,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../schedule/">课程安排</a>
+          <a href="../../../../../schedule/">课程安排</a>
           
             <label for="__nav_1_2">
               <span class="md-nav__icon md-icon"></span>
@@ -423,7 +423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schedule/ps1/" class="md-nav__link">
+      <a href="../../../../../schedule/ps1/" class="md-nav__link">
         第一学期
       </a>
     </li>
@@ -482,7 +482,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../start/">指南</a>
+          <a href="../../../../../start/">指南</a>
           
             <label for="__nav_2">
               <span class="md-nav__icon md-icon"></span>
@@ -505,7 +505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../start/quickstart/" class="md-nav__link">
+      <a href="../../../../../start/quickstart/" class="md-nav__link">
         快速上手
       </a>
     </li>
@@ -519,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../start/beforeps/" class="md-nav__link">
+      <a href="../../../../../start/beforeps/" class="md-nav__link">
         写在问求之前
       </a>
     </li>
@@ -533,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../start/code-style/" class="md-nav__link">
+      <a href="../../../../../start/code-style/" class="md-nav__link">
         代码风格
       </a>
     </li>
@@ -573,7 +573,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../start/program/">程序设计基础</a>
+          <a href="../../../../../start/program/">程序设计基础</a>
           
             <label for="__nav_2_5">
               <span class="md-nav__icon md-icon"></span>
@@ -641,7 +641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/helloworld/" class="md-nav__link">
+      <a href="../../../../../lang/helloworld/" class="md-nav__link">
         Hello, World!
       </a>
     </li>
@@ -655,7 +655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/basic/" class="md-nav__link">
+      <a href="../../../../../lang/basic/" class="md-nav__link">
         C++ 语法基础
       </a>
     </li>
@@ -669,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/var/" class="md-nav__link">
+      <a href="../../../../../lang/var/" class="md-nav__link">
         变量
       </a>
     </li>
@@ -683,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/op/" class="md-nav__link">
+      <a href="../../../../../lang/op/" class="md-nav__link">
         运算
       </a>
     </li>
@@ -730,7 +730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/branch/" class="md-nav__link">
+      <a href="../../../../../lang/branch/" class="md-nav__link">
         分支
       </a>
     </li>
@@ -744,7 +744,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/loop/" class="md-nav__link">
+      <a href="../../../../../lang/loop/" class="md-nav__link">
         循环
       </a>
     </li>
@@ -802,7 +802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/array/" class="md-nav__link">
+      <a href="../../../../../lang/array/" class="md-nav__link">
         数组
       </a>
     </li>
@@ -816,7 +816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/struct/" class="md-nav__link">
+      <a href="../../../../../lang/struct/" class="md-nav__link">
         结构体
       </a>
     </li>
@@ -830,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/union/" class="md-nav__link">
+      <a href="../../../../../lang/union/" class="md-nav__link">
         联合体
       </a>
     </li>
@@ -844,7 +844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/pointer/" class="md-nav__link">
+      <a href="../../../../../lang/pointer/" class="md-nav__link">
         指针
       </a>
     </li>
@@ -865,7 +865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/func/" class="md-nav__link">
+      <a href="../../../../../lang/func/" class="md-nav__link">
         函数
       </a>
     </li>
@@ -879,7 +879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/file-op/" class="md-nav__link">
+      <a href="../../../../../lang/file-op/" class="md-nav__link">
         文件操作
       </a>
     </li>
@@ -928,7 +928,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../lang/csl/">C++ 标准库</a>
+          <a href="../../../../../lang/csl/">C++ 标准库</a>
           
             <label for="__nav_2_5_3">
               <span class="md-nav__icon md-icon"></span>
@@ -992,7 +992,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/container/" class="md-nav__link">
+      <a href="../../../../../lang/csl/container/" class="md-nav__link">
         STL 容器简介
       </a>
     </li>
@@ -1006,7 +1006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/iterator/" class="md-nav__link">
+      <a href="../../../../../lang/csl/iterator/" class="md-nav__link">
         迭代器
       </a>
     </li>
@@ -1020,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/sequence-container/" class="md-nav__link">
+      <a href="../../../../../lang/csl/sequence-container/" class="md-nav__link">
         序列式容器
       </a>
     </li>
@@ -1034,7 +1034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/associative-container/" class="md-nav__link">
+      <a href="../../../../../lang/csl/associative-container/" class="md-nav__link">
         关联式容器
       </a>
     </li>
@@ -1048,7 +1048,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/unordered-container/" class="md-nav__link">
+      <a href="../../../../../lang/csl/unordered-container/" class="md-nav__link">
         无序关联式容器
       </a>
     </li>
@@ -1062,7 +1062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/container-adapter/" class="md-nav__link">
+      <a href="../../../../../lang/csl/container-adapter/" class="md-nav__link">
         容器适配器
       </a>
     </li>
@@ -1083,7 +1083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/algorithm/" class="md-nav__link">
+      <a href="../../../../../lang/csl/algorithm/" class="md-nav__link">
         STL 算法
       </a>
     </li>
@@ -1097,7 +1097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/bitset/" class="md-nav__link">
+      <a href="../../../../../lang/csl/bitset/" class="md-nav__link">
         bitset
       </a>
     </li>
@@ -1111,7 +1111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/string/" class="md-nav__link">
+      <a href="../../../../../lang/csl/string/" class="md-nav__link">
         string
       </a>
     </li>
@@ -1125,7 +1125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/csl/pair/" class="md-nav__link">
+      <a href="../../../../../lang/csl/pair/" class="md-nav__link">
         pair
       </a>
     </li>
@@ -1193,7 +1193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/class/" class="md-nav__link">
+      <a href="../../../../../lang/class/" class="md-nav__link">
         类
       </a>
     </li>
@@ -1207,7 +1207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/namespace/" class="md-nav__link">
+      <a href="../../../../../lang/namespace/" class="md-nav__link">
         命名空间
       </a>
     </li>
@@ -1221,7 +1221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/value-category/" class="md-nav__link">
+      <a href="../../../../../lang/value-category/" class="md-nav__link">
         值类别
       </a>
     </li>
@@ -1235,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/op-overload/" class="md-nav__link">
+      <a href="../../../../../lang/op-overload/" class="md-nav__link">
         重载运算符
       </a>
     </li>
@@ -1249,7 +1249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/reference/" class="md-nav__link">
+      <a href="../../../../../lang/reference/" class="md-nav__link">
         引用
       </a>
     </li>
@@ -1263,7 +1263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/const/" class="md-nav__link">
+      <a href="../../../../../lang/const/" class="md-nav__link">
         常值
       </a>
     </li>
@@ -1277,7 +1277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/new/" class="md-nav__link">
+      <a href="../../../../../lang/new/" class="md-nav__link">
         新版 C++ 特性
       </a>
     </li>
@@ -1291,7 +1291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/lambda/" class="md-nav__link">
+      <a href="../../../../../lang/lambda/" class="md-nav__link">
         Lambda 表达式
       </a>
     </li>
@@ -1305,7 +1305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/optimizations/" class="md-nav__link">
+      <a href="../../../../../lang/optimizations/" class="md-nav__link">
         编译优化
       </a>
     </li>
@@ -1326,7 +1326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/cpp-other-langs/" class="md-nav__link">
+      <a href="../../../../../lang/cpp-other-langs/" class="md-nav__link">
         C++ 与其他常用语言的区别
       </a>
     </li>
@@ -1347,7 +1347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../start/theory/" class="md-nav__link">
+      <a href="../../../../../start/theory/" class="md-nav__link">
         理论环境配置
       </a>
     </li>
@@ -1361,7 +1361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../start/learn-more/" class="md-nav__link">
+      <a href="../../../../../start/learn-more/" class="md-nav__link">
         资源聚集处
       </a>
     </li>
@@ -1381,16 +1381,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
       
       
         
@@ -1405,7 +1403,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../">OJ</a>
+          <a href="../../../../../oj/">OJ</a>
           
             <label for="__nav_3">
               <span class="md-nav__icon md-icon"></span>
@@ -1413,7 +1411,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           OJ
@@ -1426,16 +1424,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
       
       
         
@@ -1472,7 +1468,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../">第一学期</a>
+          <a href="../../../../../oj/ps1/">第一学期</a>
           
             <label for="__nav_3_2">
               <span class="md-nav__icon md-icon"></span>
@@ -1480,7 +1476,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
           第一学期
@@ -1528,7 +1524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-0/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-0/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -1542,7 +1538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-0-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-0-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -1561,16 +1557,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
       
       
         
@@ -1585,7 +1579,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2_3">
           <span class="md-nav__icon md-icon"></span>
           1-1
@@ -1596,87 +1590,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          讲义
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../../oj/ps1/1-1/" class="md-nav__link">
         讲义
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#debug_1" class="md-nav__link">
-    在 Debug 之前
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    在适当的位置输出
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#assert" class="md-nav__link">
-    在适当的位置插入 assert 断言
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    手搓数据测试
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    机搓数据对拍
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#debug_2" class="md-nav__link">
-    面向助教/朋友/对象 debug 法
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1688,7 +1606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-1-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-1-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -1740,7 +1658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-2-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-2-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -1792,7 +1710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-3-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-3-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -1844,7 +1762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-4-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-4-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -1896,7 +1814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-5-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-5-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -1948,7 +1866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-6-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-6-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -2000,7 +1918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-7-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-7-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -2052,7 +1970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-8-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-8-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -2104,7 +2022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-9-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-9-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -2156,7 +2074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-10-sol/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-10-sol/" class="md-nav__link">
         题解
       </a>
     </li>
@@ -2208,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-F-tut/" class="md-nav__link">
+      <a href="../../../../../oj/ps1/1-F-tut/" class="md-nav__link">
         讲义
       </a>
     </li>
@@ -2242,14 +2160,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
         
@@ -2264,7 +2184,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../program/">项目</a>
+          <a href="../../../../">项目</a>
           
             <label for="__nav_4">
               <span class="md-nav__icon md-icon"></span>
@@ -2272,7 +2192,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           项目
@@ -2285,14 +2205,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
       
       
         
@@ -2311,7 +2233,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../program/ps1/">NJU Universalis（问求风云）</a>
+          <a href="../../../">NJU Universalis（问求风云）</a>
           
             <label for="__nav_4_2">
               <span class="md-nav__icon md-icon"></span>
@@ -2319,7 +2241,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4_2">
           <span class="md-nav__icon md-icon"></span>
           NJU Universalis（问求风云）
@@ -2356,7 +2278,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../program/ps1/0/">零：环境配置和上手</a>
+          <a href="../../../0/">零：环境配置和上手</a>
           
             <label for="__nav_4_2_2">
               <span class="md-nav__icon md-icon"></span>
@@ -2379,7 +2301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../program/ps1/0/getcode/" class="md-nav__link">
+      <a href="../../../0/getcode/" class="md-nav__link">
         梦开始的地方
       </a>
     </li>
@@ -2393,7 +2315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../program/ps1/0/complete_shell/" class="md-nav__link">
+      <a href="../../../0/complete_shell/" class="md-nav__link">
         基础设施
       </a>
     </li>
@@ -2412,14 +2334,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" checked>
       
       
         
@@ -2438,7 +2362,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../program/ps1/1/">一：Hello, Minitui!</a>
+          <a href="../../">一：Hello, Minitui!</a>
           
             <label for="__nav_4_2_3">
               <span class="md-nav__icon md-icon"></span>
@@ -2446,7 +2370,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4_2_3">
           <span class="md-nav__icon md-icon"></span>
           一：Hello, Minitui!
@@ -2459,14 +2383,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3_2" checked>
       
       
         
@@ -2483,7 +2409,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../program/ps1/1/learn_program/">RTFSC（框架代码导读）</a>
+          <a href="../">RTFSC（框架代码导读）</a>
           
             <label for="__nav_4_2_3_2">
               <span class="md-nav__icon md-icon"></span>
@@ -2491,7 +2417,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_3_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_3_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4_2_3_2">
           <span class="md-nav__icon md-icon"></span>
           RTFSC（框架代码导读）
@@ -2506,7 +2432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../program/ps1/1/learn_program/c_make_principle/" class="md-nav__link">
+      <a href="../c_make_principle/" class="md-nav__link">
         代码组织与程序构建
       </a>
     </li>
@@ -2518,11 +2444,52 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../program/ps1/1/learn_program/makefile/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Makefile 入门
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Makefile 入门
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    引入
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2541,7 +2508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../program/ps1/1/draw/" class="md-nav__link">
+      <a href="../../draw/" class="md-nav__link">
         组件管理与绘制
       </a>
     </li>
@@ -2555,7 +2522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../program/ps1/1/event/" class="md-nav__link">
+      <a href="../../event/" class="md-nav__link">
         用户输入与事件
       </a>
     </li>
@@ -2600,7 +2567,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../program/ps1/2/">二：地图编辑器</a>
+          <a href="../../../2/">二：地图编辑器</a>
           
             <label for="__nav_4_2_4">
               <span class="md-nav__icon md-icon"></span>
@@ -2623,7 +2590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../program/ps1/2/layout/" class="md-nav__link">
+      <a href="../../../2/layout/" class="md-nav__link">
         多组件与布局
       </a>
     </li>
@@ -2637,7 +2604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../program/ps1/2/map/" class="md-nav__link">
+      <a href="../../../2/map/" class="md-nav__link">
         地图显示与编辑
       </a>
     </li>
@@ -2651,7 +2618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../program/ps1/2/serialization/" class="md-nav__link">
+      <a href="../../../2/serialization/" class="md-nav__link">
         地图数据持久化
       </a>
     </li>
@@ -2705,7 +2672,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../lab/">Lab</a>
+          <a href="../../../../../lab/">Lab</a>
           
         </div>
       
@@ -2751,43 +2718,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#debug_1" class="md-nav__link">
-    在 Debug 之前
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    在适当的位置输出
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#assert" class="md-nav__link">
-    在适当的位置插入 assert 断言
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    手搓数据测试
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    机搓数据对拍
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#debug_2" class="md-nav__link">
-    面向助教/朋友/对象 debug 法
+    引入
   </a>
   
 </li>
@@ -2810,94 +2742,18 @@
   
 
 
-<h1 id="debug">如何 Debug</h1>
-<p><strong>特别提醒：请先将自己的代码在本地测试，至少保证不会发生编译错误且通过样例后再提交到 OJ 上，不要将 OJ 当作测试代码的唯一平台。</strong></p>
-<blockquote>
-<p>爱护 OJ ，人人有责。</p>
-</blockquote>
-<p>关于程序设计基础的知识，OI wiki （相关素材已搬运至“指南”“程序设计基础”部分）上已有详尽的介绍，在本次讲义中不再赘述。</p>
+<h1 id="make">自动化构建：Make</h1>
+<p>在认识了可执行程序构建原理的基础之后，接下来我们将目光转移到项目实际使用的自动化构建工具——Make 上。</p>
+<h2 id="_1">引入</h2>
+<p>我们在谈及基础设施时提过，对于项目构建这种简单繁复的工作，我们应该适当封装和抽象其流程，再运用自动化工具进行解决。这样不仅节约了时间，还杜绝了出错的可能。</p>
+<p>本项目使用 Make 进行自动化构建。Make 本身是一个命令行自动化工具，它通过解析使用特定语言（即 Makefile）编写的脚本来进行自动化构建。因此，本篇讲义旨在介绍两方面的内容：</p>
+<ul>
+<li>如何在命令行中使用 Make。</li>
+<li>如何编写 Makefile。</li>
+</ul>
 <details class="question" open="open">
-<summary>什么是 bug ，什么是 debug ？</summary>
-<p>所谓 Bug ，是指软件运行时因程序本身有错误而造成功能不正常、死机、数据丢失、非正常中断等现象。 Debug (调试)就是通过测试以消除 bug 的过程。
-关于 bug 为什么叫做 bug ，可以参考 <a href="https://zhuanlan.zhihu.com/p/140899314">你知道BUG为什么叫BUG么？</a>。</p>
+<summary>怎么又冒出来一种语言？</summary>
 </details>
-<h2 id="debug_1">在 Debug 之前</h2>
-<p>在 debug 之前，请先保证程序能够通过编译。如果程序都不能顺利被转换为可执行文件，如果程序都不能顺利运行的话，自然也没有 debug 可言。</p>
-<p>保证程序“语法”正确其实是个熟练活，即使你是零基础的同学，经过三周左右的训练，也能基本保证可以轻松应对程序编译错误的情况。关于C++语法相关知识，OI wiki 等相关资源处已有详尽介绍，请同学们认真学习。</p>
-<p><div align="left"><img alt="" src="../../../pics/c++_extensions.png" style="zoom:50%;" /></div></p>
-
-<p>此外，许多编辑器/IDE也有代码错误提示的插件。例如VSCode在安装了C/C++ Extensions （如上图所示）后就可以自动显示程序的一些语法错误（如下图）。</p>
-<p>
-<table><tr>
-<td><img alt="" src="../../../pics/error_code.png" /></td>
-<td><img alt="" src="../../../pics/error_message.png" /></td>
-</tr></table>
-</p>
-
-<h2 id="_1">在适当的位置输出</h2>
-<p><strong>输出调试法</strong>是一种门槛低、收益高的经验方法。输出调试法就是通过输出程序的部分中间结果来验证程序中间步骤的正确性，同时也便于编程者观测程序运行的结果。</p>
-<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100005</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="w">        </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;sum[%d] is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"> </span><span class="c1">// ATTENTION HERE</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="n">n</span><span class="p">]);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>上图所示的实例中，程序接受一串数字的输入，输出这串数字的和。我们构建了一个数组<code>sum[]</code>，其中<code>sum[i]</code>表示输入中前 <span class="arithmatex">\(i\)</span> 个数字的和。通过标记行的输出，编程者得以检查<code>sum[i]</code>的值是否正确，从而验证中间结果的正确性。</p>
-<p>一般来说，代码错误越早暴露、越接近 bug 的源头，越容易被纠正。如果编程者在<code>sum[i] = sum[i - 1] + a[i]</code>处就犯了错误，那么在循环刚开始的时候编程者就可以通过观察输出的<code>sun[i]</code>的数值发现错误，而不必等到最后输出整个数组的和时才发现结果不正确。</p>
-<p>通过熟练度的提升，编程者可以更好地知道应该在<strong>何处</strong>输出<strong>什么内容</strong>以验证中间结果，或者查找代码 bug 。在大二上学期计算机系统基础课程的 PA 实验中，仅熟练运用输出调试法 debug 就可以顺利通过这个令许多人闻风丧胆的实验。</p>
-<p><strong>在提交代码到 OJ 前，切记要先删除输出调试法增加的 <code>printf</code>内容。</strong></p>
-<h2 id="assert">在适当的位置插入 assert 断言</h2>
-<p>assert 调试法和输出调试法很相似（关于<code>assert</code>语句是什么，请stfw；关于stfw是什么，请rtfm），输出调试法通过输出中间内容以 check ，而 assert 调试法通过断言关于中间内容的一些<strong>必要条件</strong>来检验程序的正确性。</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
-<span class="w">    </span><span class="c1">// ...</span>
-<span class="w">    </span><span class="c1">// compute the length of pillar</span>
-<span class="w">    </span><span class="c1">// ...</span>
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">len</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>例如，假如我现在要计算某根柱子的长度，记录在变量<code>len</code>中并输出。那么在<code>printf</code>前，我可以插入一条<code>assert(len &gt;= 0)</code>语句断言计算出的长度为非负数。如果该处 assert fail ，那么说明在之前的代码中一定出现了 bug 。</p>
-<p><em>在运用assert断言前，请认真思考断言内的条件是否真的是<strong>必要条件</strong>。错误条件的添加可能会导致正确的代码触发 assert fail ，并给你带来不必要的困扰。——写oslab有感</em></p>
-<h2 id="_2">手搓数据测试</h2>
-<p>顾名思义，就是自己造数据并进行测试。在造数据的时候，请尽量造与<strong>当前代码已通过数据</strong>有一些差别的数据，尤其是<strong>边界情况</strong>（corner case）的数据。</p>
-<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">eps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-9</span><span class="p">;</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">;</span>
-<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%lf %lf %lf %lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">y2</span><span class="p">);</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fabs</span><span class="p">((</span><span class="n">y1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">x1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">y2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">x2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">eps</span><span class="p">)</span><span class="w"> </span>
-<span class="w">    </span><span class="c1">// Please learn how to judge if two double-variables are equal.</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Vertical</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="k">else</span><span class="w"> </span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Not Vertical</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>例如，在以上代码中，我想判断向量<span class="arithmatex">\((x_1,y_1),(x_2,y_2)\)</span>在二维平面中是否垂直。在测试这个代码的过程中，我可能测试了很多组数据（例如<span class="arithmatex">\(x_1=2,y_1=1,x_2=-1,y_2=2\)</span>）都是对的。但这些数据其实都是<strong>类似</strong>的，反复测试性质类似的数据并不能很好地保证程序的正确性：如果我构造<span class="arithmatex">\(x_1=3,y_1=0,x_2=0,y_2=2\)</span>的数据并测试，这段代码还能输出正确的结果吗？我现在构造的这组数据，和之前构造的数据的差别在哪里？</p>
-<h2 id="_3">机搓数据对拍</h2>
-<p>算法竞赛中的常用方法，本次讲义中不要求掌握。</p>
-<p>推荐学习：</p>
-<p>1，https://www.cnblogs.com/reddest/p/5925018.html （<strong>请勿学习改博客中的代码风格</strong>）</p>
-<p>2，自行上网搜索：对拍</p>
-<h2 id="debug_2">面向助教/朋友/对象 debug 法</h2>
-<p>你可千万不能这样。 debug 的能力和因此给你带来的挑战、困扰乃至于痛苦都是你“应有的训练”，你应当自己完成相关任务。</p>
-<p><br>
-<br></p>
-<p>推荐有编程基础的同学学习：<a href="https://www.bilibili.com/video/BV1f54y1K7rQ/?buvid=XY052C10059E2FA235377F4816C20E142F004&amp;is_story_h5=false&amp;mid=k7Jz6i6rAEP2EpZT1d1uAg%3D%3D&amp;p=1&amp;plat_id=114&amp;share_from=ugc&amp;share_medium=android&amp;share_plat=android&amp;share_session_id=cd9b2f11-0ccc-4bbf-9780-dde53dbf56a5&amp;share_source=QQ&amp;share_tag=s_i&amp;timestamp=1694520139&amp;unique_k=q2B6oiS&amp;up_id=202224425">调试理论与实践 (Fault; Failure; Error; 调试一切) [南京大学2023操作系统-P8] (蒋炎岩)</a></p>
-<p><strong>----------END----------</strong></p>
-<p>（本讲义部分参考2021级问题求解助教朱宇博学长相关slides内容，在此特别鸣谢）</p>
 
 
 
@@ -2939,13 +2795,13 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
-          <script src="../../../javascripts/config.js"></script>
+          <script src="../../../../../javascripts/config.js"></script>
         
       
         
