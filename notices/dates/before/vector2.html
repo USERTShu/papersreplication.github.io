@@ -175,60 +175,61 @@
 # 仅供参考
 class Vector2d:
 
-def __init__(self, x, y):
-self.x = x
-self.y = y
-def __add__(self, other):
-"""形式1"""
-return Vector2d(self.x + other.x, self.y + other.y)
-# 或直接打印: print(f"({self.x + other.x}, {self.y + other.y})")
-    
-def add(self, other):
-"""形式2"""
-return Vector2d(self.x + other.x, self.y + other.y)
-# 或直接打印: print(f"({self.x + other.x}, {self.y + other.y})")
-    
-def __sub__(self, other):
-"""形式1"""
-return Vector2d(self.x - other.x, self.y - other.y)
-# 或直接打印: print(f"({self.x - other.x}, {self.y - other.y})")
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
-def sub(self, other):
-"""形式2"""
-return Vector2d(self.x - other.x, self.y - other.y)
-# 或直接打印: print(f"({self.x - other.x}, {self.y - other.y})")
-    
-def get_length(self):
-"""求模"""
-return (self.x**2 + self.y**2) ** 0.5
-    
-def get_negative(self):
-"""求反"""
-return Vector2d(-self.x, -self.y)
-# 或直接打印: print(f"({-self.x}, {-self.y})")
+    def __add__(self, other):
+        """形式1"""
+    return Vector2d(self.x + other.x, self.y + other.y)
+    # 或直接打印: print(f"({self.x + other.x}, {self.y + other.y})")
+        
+    def add(self, other):
+        """形式2"""
+        return Vector2d(self.x + other.x, self.y + other.y)
+        # 或直接打印: print(f"({self.x + other.x}, {self.y + other.y})")
+        
+    def __sub__(self, other):
+        """形式1"""
+        return Vector2d(self.x - other.x, self.y - other.y)
+        # 或直接打印: print(f"({self.x - other.x}, {self.y - other.y})")
 
-def is_parallel(self, other):
-"""判断是否共线"""
-return self.x * other.y == self.y * other.x
-    
-def is_vertical(self, other):
-"""判断是否垂直"""
-return self.x * other.x + self.y * other.y == 0
-    
-def __repr__(self):<br>
-# 若采用"直接打印"的方式 该__repr__()方法可忽略
-# 建议返回一个新的Vector2d对象 而不是直接打印
-return f"({self.x}, {self.y})"
+    def sub(self, other):
+        """形式2"""
+        return Vector2d(self.x - other.x, self.y - other.y)
+        # 或直接打印: print(f"({self.x - other.x}, {self.y - other.y})")
+        
+    def get_length(self):
+        """求模"""
+        return (self.x**2 + self.y**2) ** 0.5
+        
+    def get_negative(self):
+        """求反"""
+        return Vector2d(-self.x, -self.y)
+        # 或直接打印: print(f"({-self.x}, {-self.y})")
+
+    def is_parallel(self, other):
+        """判断是否共线"""
+        return self.x * other.y == self.y * other.x
+        
+    def is_vertical(self, other):
+        """判断是否垂直"""
+        return self.x * other.x + self.y * other.y == 0
+        
+    def __repr__(self):<br>
+        # 若采用"直接打印"的方式 该__repr__()方法可忽略
+        # 建议返回一个新的Vector2d对象 而不是直接打印
+        return f"({self.x}, {self.y})"
     
 if __name__ == '__main__':
-a = Vector2d(3, 5)
-b = Vector2d(1, 2)
-print("a + b =", a + b)
-print("a - b =", a.sub(b))
-print("a的模长为:", a.get_length())
-print("b的相反向量为:", b.get_negative())
-print("a与b" + ("" if a.is_parallel(b) else "不") + "共线")
-print("a与b" + ("" if a.is_vertical(b) else "不") + "垂直")</code><pre>
+    a = Vector2d(3, 5)
+    b = Vector2d(1, 2)
+    print("a + b =", a + b)
+    print("a - b =", a.sub(b))
+    print("a的模长为:", a.get_length())
+    print("b的相反向量为:", b.get_negative())
+    print("a与b" + ("" if a.is_parallel(b) else "不") + "共线")
+    print("a与b" + ("" if a.is_vertical(b) else "不") + "垂直")</code><pre>
     </p>
   </div>
 </div>
