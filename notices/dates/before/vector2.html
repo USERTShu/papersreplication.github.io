@@ -13,6 +13,8 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
       <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
       <link rel="stylesheet" href="../../../css/heimu.css">
+      <link rel="stylesheet" href="../../../css/prism.css">
+      <script src="../../../assets/javascripts/prism.js"></script>
     
     <script>__md_scope=new URL("../../../",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 
@@ -149,23 +151,102 @@
 
 <div id="text" style="text-align:left; position:absolute; left:35%; color: white;">
 
-<h2>【<b>指南</b>】关于python和anaconda</h2>
-2024/10/08
-<div id="content" style="background-color:#21222c; height:425px; width:630px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
-  <div style="width:600px; position:relative; left:15px">
+<h2>练习题：二维向量类</h2>
+2024/10/09
+<h3>要求</h3>
+<div id="content" style="background-color:#21222c; height:425px; width:700px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
+  <div style="width:670px; position:relative; left:15px">
     <p style="position:relative; top:10px">
-        &#12288;&#12288;关于Anaconda、Python环境的介绍：<br>
-        &#12288;&#12288;1.在python官网上下载了python也没必要卸载，当然卸载也完全没问题，因为这两个不冲突，并且互相也不依赖。<br>
-        &#12288;&#12288;2.在python官网上下载的python，可以理解为就是一个“环境”，一个python环境当中有一个python解释器和很多的库(可以先简单理解为工具包)，环境是运行代码所必需的东西。<br>
-        &#12288;&#12288;3.anaconda是一个软件，允许安装多个python环境，方便在不同项目中使用，防止出现冲突的情况。<br>
-        &#12288;&#12288;4.在官网上下载python时会自带一个IDLE，那个是官方的IDE（集成开发环境，可以简单理解为写代码的软件），因为很难用，不推荐使用IDLE。python常用的IDE有PyCharm、VSCode等，大家可根据个人喜好进行选择。<br>
-        &#12288;&#12288;<a href="https://blog.csdn.net/wq_ocean_/article/details/103889237"><u>Anaconda安装教程</u></a>(这里面选择的anaconda版本太老了，可以选择较新的版本。创建环境时，不要像教程一样创建python2.7的环境(远古python)。一般3.7到3.9的python版本是比较适合的。)
+        &#12288;&#12288;我们预计在下周发布几道题目，用于让大家参考自己的python水平是否达到要求，届时仍未达到要求且想加入论文复现组的同学，就需要加快python学习进度了，如果有同学已经学习完了“类”，可以先尝试完成一下该题：<br>
+        &#12288;&#12288;实现这样一个类：Vector2d(二维向量)。其功能为：表示一个二维向量，支持向量加减法运算，求模长运算，求反向量运算，判断两向量是否垂直，是否共线。<br>
+        &#12288;&#12288;为求简便，使用直角坐标系表示。<br>
+        &#12288;&#12288;该类的使用方法示例：<br><b>
+        &#12288;&#12288;vec_a = Vector2d(3, 5) # 坐标(3, 5)<br>
+        &#12288;&#12288;vec_b = Vector2d(1, 2) # 坐标(1, 2)<br>
+        &#12288;&#12288;print(vec_a + vec_b) # 向量加法 形式1<br>
+        &#12288;&#12288;print(vec_a.add(vec_b)) # 形式2 实现任意一种形式即可<br></b>
+    </p>
+  </div>
+</div>
+<h3>参考代码</h3>
+<div id="content" style="height:1800px; width:700px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
+  <div style="width:690px; position:relative; left:5px;">
+    <p style="position:relative; top:10px"><pre><code class="language-python">
+# 仅供参考
+class Vector2d:
+
+def __init__(self, x, y):
+self.x = x
+self.y = y
+def __add__(self, other):
+"""形式1"""
+return Vector2d(self.x + other.x, self.y + other.y)
+# 或直接打印: print(f"({self.x + other.x}, {self.y + other.y})")
+    
+def add(self, other):
+"""形式2"""
+return Vector2d(self.x + other.x, self.y + other.y)
+# 或直接打印: print(f"({self.x + other.x}, {self.y + other.y})")
+    
+def __sub__(self, other):
+"""形式1"""
+return Vector2d(self.x - other.x, self.y - other.y)
+# 或直接打印: print(f"({self.x - other.x}, {self.y - other.y})")
+
+def sub(self, other):
+"""形式2"""
+return Vector2d(self.x - other.x, self.y - other.y)
+# 或直接打印: print(f"({self.x - other.x}, {self.y - other.y})")
+    
+def get_length(self):
+"""求模"""
+return (self.x**2 + self.y**2) ** 0.5
+    
+def get_negative(self):
+"""求反"""
+return Vector2d(-self.x, -self.y)
+# 或直接打印: print(f"({-self.x}, {-self.y})")
+
+def is_parallel(self, other):
+"""判断是否共线"""
+return self.x * other.y == self.y * other.x
+    
+def is_vertical(self, other):
+"""判断是否垂直"""
+return self.x * other.x + self.y * other.y == 0
+    
+def __repr__(self):<br>
+# 若采用"直接打印"的方式 该__repr__()方法可忽略
+# 建议返回一个新的Vector2d对象 而不是直接打印
+return f"({self.x}, {self.y})"
+    
+if __name__ == '__main__':
+a = Vector2d(3, 5)
+b = Vector2d(1, 2)
+print("a + b =", a + b)
+print("a - b =", a.sub(b))
+print("a的模长为:", a.get_length())
+print("b的相反向量为:", b.get_negative())
+print("a与b" + ("" if a.is_parallel(b) else "不") + "共线")
+print("a与b" + ("" if a.is_vertical(b) else "不") + "垂直")</code><pre>
+    </p>
+  </div>
+</div>
+<h3>运行结果</h3>
+<div id="content" style="background-color:#21222c; height:425px; width:700px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
+  <div style="width:690px; position:relative; left:15px;">
+    <p style="position:relative; top:10px">
+        &#12288;&#12288;a + b = (4, 7)<br>
+        &#12288;&#12288;a - b = (2, 3)<br>
+        &#12288;&#12288;a的模长为: 5.830951894845301<br>
+        &#12288;&#12288;b的相反向量为: (-1, -2)<br>
+        &#12288;&#12288;a与b不共线<br>
+        &#12288;&#12288;a与b不垂直<br>
     </p>
   </div>
 </div>
 
-
-
+<br><br><br><br><br><br>
 </div>
 
                 
