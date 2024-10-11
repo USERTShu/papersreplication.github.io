@@ -13,6 +13,8 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
       <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
       <link rel="stylesheet" href="../../../css/heimu.css">
+      <link rel="stylesheet" href="../../../css/prism.css">
+      <script src="../../../assets/javascripts/prism.js"></script>
     
     <script>__md_scope=new URL("../../../",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 
@@ -149,22 +151,174 @@
 
 <div id="text" style="text-align:left; position:absolute; left:35%; color: white;">
 
-<h2>动员大会通知</h2>
-2024/10/09
-<div id="content" style="background-color:#21222c; height:325px; width:630px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
-  <div style="width:600px; position:relative; left:15px">
-    <p style="position:relative; top:10px">
-        &#12288;&#12288;各位同学好，本学期动员大会即将举行。<br>
-        &#12288;&#12288;时间：【<b>10.13(周日)晚7:10</b>】<br>
-        &#12288;&#12288;地点：【<b>实C113</b>】<br>
-        &#12288;&#12288;届时将展示几种人工智能技术的实际应用并带大家实操。请各位同学提前下载好<a href="https://cloud.189.cn/web/share?code=UJrQJzBjYzea" target="_blank"><u>AnimeGANv2(访问码：uks3)</u></a>并带上电脑，准时到达会议地点。<br>
-        &#12288;&#12288;未安装Anaconda的同学请仔细阅读<a href="startpython.html"><u>【<b>指南</b>】关于python和anaconda</u></a>并安装Anaconda。<br>
-        &#12288;&#12288;没有VSCode的同学，可以提前尝试学习使用jupyter-notebook(一般安装anaconda之后就会自带)或者安装VSCode。<br>
-        &#12288;&#12288;⚠️非特殊情况不接受请假，如需请假请提前找部长说明。
-    </p>
+<h2>【<b>发布</b>】小猿口算个位数比较示例程序代码</h2>
+2024/10/11
+<h3>demo简介</h3>
+<div id="content" style="background-color:#21222c; height:260px; width:700px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
+  <div style="width:670px; position:relative; left:15px; top:10px">
+        &#12288;&#12288;本程序可自动化<<小猿口算>>APP中个位数比较练习的过程。<br>
+        &#12288;&#12288;注意：本程序仅仅是示例程序，功能少且性能差。并且对使用条件有着非常严苛的要求，例如屏幕分辨率、手机投屏到电脑后窗口放置的位置等，程序并未对不同情况做出适配，因此不建议尝试运行该代码。<br>
+        &#12288;&#12288;编写思路是获取要计算的题目的截图，经过OCR识别得到图中的内容，进而计算后在绘制答案区操控鼠标进行绘制。<br>
+        &#12288;&#12288;重申：该demo程序仅展示该思路的可行性，并未对代码本身做出优化，不建议学习该程序的编写风格！
   </div>
 </div>
+<br>
+<h3>代码</h3>
+<div id="content" style="height:4300px; width:700px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
+  <div style="width:690px; position:relative; left:5px; top:10px">
+    <pre><code class="language-python">
+import easyocr
+import numpy as np
+import pyautogui as pg
+from time import sleep
 
+
+"""
+    demo程序 代码和效果都十分粗糙
+    TODO 答对后自动下一题 而非每次等固定时间
+    BUG 只能用mode1比较个位数大小 mode2加减法无法正常运作
+"""
+
+pg.PAUSE = 0.01
+mode = 2
+gap_time = 0.5 if mode == 1 else 2
+
+def draw(start_pos, end_pos):
+    length = ((start_pos[0] - end_pos[0])**2 + (start_pos[1] - end_pos[1])**2) ** 0.5 + 1e-12
+    rate = 5
+    delta_x = (end_pos[0] - start_pos[0]) / length * rate
+    delta_y = (end_pos[1] - start_pos[1]) / length * rate
+    x = start_pos[0]; y = start_pos[1]
+    pg.mouseDown(*start_pos)
+    while abs(x - end_pos[0]) > 5 or abs(y - end_pos[1]) > 5:
+        x += delta_x
+        y += delta_y
+        pg.moveTo(x, y)
+    pg.moveTo(*end_pos)
+    pg.mouseUp()
+
+def process(text_list) -> tuple[bool, str]:
+    # TODO 增加鲁棒性
+    text_list = "".join(text_list)
+    if len(text_list) == 0:
+        print("Detect Nothing")
+        return False, ""
+    print(text_list)
+    if mode == 1:
+        text_list = text_list[:-1]
+        return True, str(eval(text_list))
+    else:
+        if eval(text_list[0]) > eval(text_list[-1]):
+            return False, "g"
+        elif eval(text_list[0]) < eval(text_list[-1]):
+            return False, "l"
+        elif eval(text_list[0]) == eval(text_list[-1]):
+            return False, "e"
+        else:
+            print("Detect Nothing")
+            return False, ""
+
+
+            
+if __name__ == '__main__':
+
+    left = 0
+    # top = 276
+    top = 240
+    # width = 480
+    width = 400
+    # height = 444 - top
+    height = 365 - top
+    region = (left, top, width, height)
+
+    gap = 150
+    # 均为相对于截图区域左上角的坐标
+    start_pos = (40, 571 - 66)
+    greater_pos = (start_pos, (50, 580 - 66), (40, 590 - 66), -1)
+    less_pos = ((50, 580 - 66), (40, 590 - 66), (50, 600 - 66), -1)
+    equal_pos = (start_pos, (50, 571 - 66), -1, (38, 580 - 66), (50, 580 - 66), -1)
+    zero_pos = (start_pos, (40, 580 - 66), (50, 580 - 66), (40, 571 - 66), start_pos, -1)
+    one_pos = (start_pos, (40, 580 - 66), -1)
+    two_pos = (start_pos, (50, 571 - 66), (40, 580 - 66), (50, 580 - 66), -1)
+    three_pos = (start_pos, (50, 580 - 66), (40, 590 - 66), (50, 600 - 66), (40, 610 - 66), -1)
+    four_pos = (start_pos, (40, 580 - 66), (50, 580 - 66), (45, 575 - 66), (45, 590 - 66), -1)
+    five_pos = ((50, 571 - 66), (50, 580 - 66), (45, 600 - 66), -1, (50, 590 - 66), (55, 590 - 66), -1)
+    six_pos = ((50, 582 - 66), (40, 590 - 66), (55, 590 - 66), (55, 575 - 66), -1)
+    seven_pos = (start_pos, (50, 571 - 66), (60, 580 - 66), -1)
+    eight_pos = ((50, 571 - 66), start_pos, (50, 580 - 66), (40, 580 - 66), (50, 571 - 66), -1)
+    nine_pos = ((50, 571 - 66), (40, 571 - 66), (40, 580 - 66), (50, 571 - 66), (50, 580 - 66), -1)
+    position = (
+        zero_pos,
+        one_pos,
+        two_pos,
+        three_pos,
+        four_pos, 
+        five_pos, 
+        six_pos,
+        seven_pos,
+        eight_pos,
+        nine_pos 
+    )
+
+    reader = easyocr.Reader(
+        lang_list=['en'], 
+        gpu=False, 
+        download_enabled=False
+    )
+
+    args = {
+        "text_threshold": 0.01,
+        "low_text": 0.1,
+        "filter_ths": 0.001,
+        "detail": 0,
+        "allowlist": "0123456789+-=?"
+    }
+
+    input()
+    while True:
+        screenshot = np.array(pg.screenshot(region=region))
+        res = process(reader.readtext(screenshot, **args))
+        if res[0]:
+            for j, num in enumerate(res[1]):
+                num = int(num)
+                for i in range(len(position[num]) - 1):
+                    if position[num][i + 1] == -1 or position[num][i] == -1:
+                        continue
+                    start_x = left + position[num][i][0] + gap * j
+                    start_y = top + position[num][i][1]
+                    end_x = left + position[num][i + 1][0] + gap * j
+                    end_y = top + position[num][i + 1][1]
+                    draw((start_x, start_y), (end_x, end_y))
+        else:
+            if res[1] == 'g':
+                for i in range(2):
+                    start_x = left + greater_pos[i][0]
+                    start_y = top + greater_pos[i][1]
+                    end_x = left + greater_pos[i + 1][0]
+                    end_y = top + greater_pos[i + 1][1]
+                    draw((start_x, start_y), (end_x, end_y))
+            elif res[1] == 'l':
+                for i in range(2):
+                    start_x = left + less_pos[i][0]
+                    start_y = top + less_pos[i][1]
+                    end_x = left + less_pos[i + 1][0]
+                    end_y = top + less_pos[i + 1][1]
+                    draw((start_x, start_y), (end_x, end_y))
+            elif res[1] == "e":
+                for i in range(4):
+                    if equal_pos[i + 1] == -1 or equal_pos[i] == -1:
+                        continue
+                    start_x = left + equal_pos[i][0]
+                    start_y = top + equal_pos[i][1]
+                    end_x = left + equal_pos[i + 1][0]
+                    end_y = top + equal_pos[i + 1][1]
+                    draw((start_x, start_y), (end_x, end_y))
+
+        sleep(gap_time)
+
+</code></pre>
+  </div>
+</div>
 
 
 </div>
