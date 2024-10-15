@@ -176,12 +176,12 @@ from time import sleep
 """
     demo程序 代码和效果都十分粗糙
     TODO 答对后自动下一题 而非每次等固定时间
-    BUG 只能用mode1比较个位数大小 mode2加减法无法正常运作
+    BUG 只能用mode2比较大小 mode1加减法无法正常运作
 """
 
 pg.PAUSE = 0.01
 mode = 2
-gap_time = 0.5 if mode == 1 else 2
+gap_time = 2 if mode == 1 else 0.5
 
 def draw(start_pos, end_pos):
     length = ((start_pos[0] - end_pos[0])**2 + (start_pos[1] - end_pos[1])**2) ** 0.5 + 1e-12
@@ -199,12 +199,12 @@ def draw(start_pos, end_pos):
 
 def process(text_list) -> tuple[bool, str]:
     # TODO 增加鲁棒性
-    text_list = "".join(text_list)
     if len(text_list) == 0:
         print("Detect Nothing")
         return False, ""
     print(text_list)
     if mode == 1:
+        text_list = "".join(text_list)
         text_list = text_list[:-1]
         return True, str(eval(text_list))
     else:
@@ -230,13 +230,14 @@ if __name__ == '__main__':
     # height = 444 - top
     height = 365 - top
     region = (left, top, width, height)
+    next_region = (left + 100, top + height + 30, 200, 70)
 
     gap = 150
     # 均为相对于截图区域左上角的坐标
     start_pos = (40, 571 - 66)
     greater_pos = (start_pos, (50, 580 - 66), (40, 590 - 66), -1)
     less_pos = ((50, 580 - 66), (40, 590 - 66), (50, 600 - 66), -1)
-    equal_pos = (start_pos, (50, 571 - 66), -1, (38, 580 - 66), (50, 580 - 66), -1)
+    equal_pos = (start_pos, (50, 571 - 66), -1, (40, 580 - 66), (50, 580 - 66), -1)
     zero_pos = (start_pos, (40, 580 - 66), (50, 580 - 66), (40, 571 - 66), start_pos, -1)
     one_pos = (start_pos, (40, 580 - 66), -1)
     two_pos = (start_pos, (50, 571 - 66), (40, 580 - 66), (50, 580 - 66), -1)
@@ -262,22 +263,29 @@ if __name__ == '__main__':
 
     reader = easyocr.Reader(
         lang_list=['en'], 
-        gpu=False, 
+        gpu=True, 
         download_enabled=False
     )
 
     args = {
         "text_threshold": 0.01,
-        "low_text": 0.1,
+        "low_text": 0.2,
         "filter_ths": 0.001,
         "detail": 0,
         "allowlist": "0123456789+-=?"
     }
 
+    print("Enter to start", end='')
     input()
+
+    screenshot = np.array(pg.screenshot(region=region).convert("L"))
+    res = process(reader.readtext(screenshot, **args))
+
     while True:
-        screenshot = np.array(pg.screenshot(region=region))
-        res = process(reader.readtext(screenshot, **args))
+        screenshot = np.array(pg.screenshot(region=next_region).convert("L").resize((650, 300)))
+        screenshot[screenshot < 200] = 0
+        screenshot[screenshot >= 200] = 255
+        # res = process(reader.readtext(screenshot, **args))
         if res[0]:
             for j, num in enumerate(res[1]):
                 num = int(num)
@@ -314,7 +322,13 @@ if __name__ == '__main__':
                     end_y = top + equal_pos[i + 1][1]
                     draw((start_x, start_y), (end_x, end_y))
 
-        sleep(gap_time)
+        # print("Sleep")
+        # sleep(gap_time)
+        # print("Awake")
+        # exit(0)
+        res = process(reader.readtext(screenshot, **args))
+
+
 
 </code></pre>
   </div>
