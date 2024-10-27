@@ -1,0 +1,59 @@
+.bodyfont {
+    color:black; 
+    font-size:large; 
+    font-family:宋体, monospace
+}
+
+#content {
+    /* background-color:#21222c; */
+    height:225px; 
+    width:630px; 
+    color:black; 
+    font-size:large; 
+    font-family:宋体, monospace; 
+    text-align:left;
+    border: 1px solid #000; 
+    width: 630px; 
+    height: 260px;
+}
+
+h1.font {
+    color:black; 
+    font-size:40px; 
+    font-weight: 1000;
+    font-family:Y, monospace
+}
+
+h2, h3 {
+    color:black; 
+    font-family:宋体, monospace
+}
+
+#2024 {
+    color:red; 
+    font-size:large;
+    font-family:宋体, monospace
+}
+
+.menu {
+    position:fixed; 
+    color: #5867be
+}
+
+#text {
+    text-align:left; 
+    position:relative; 
+    left:15%;
+    background-color: white;
+}
+
+#background {
+    position:absolute; 
+    top:5%;
+    left:25%; 
+    right:25%;
+    background-color: white;
+}
+
+/* style="background-color:#f7f7f7" */
+/* <div style="width:500px; height:100px; border:1px solid #000;">This is a rectangle!</div>  */

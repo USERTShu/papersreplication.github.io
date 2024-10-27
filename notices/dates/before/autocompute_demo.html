@@ -15,12 +15,13 @@
       <link rel="stylesheet" href="../../../css/heimu.css">
       <link rel="stylesheet" href="../../../css/prism.css">
       <script src="../../../assets/javascripts/prism.js"></script>
+      <link rel="stylesheet" href="../../../css/font.css">
     
     <script>__md_scope=new URL("../../../",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 
   </head>
     
-<body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="red" style="background-color:#2e303e">  
+<body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="red" style="background-color:#f7f7f7">  
   <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
 
   <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
@@ -143,18 +144,21 @@
     <div class="md-content" data-md-component="content">
     <article class="md-content__inner md-typeset">
 
-<nav class="side-menu" style="position:fixed; color: white">
+<nav class="menu">
     <ul>
-        <li><a href="../../" style="color: white">返回公告列表</a></li>
+        <li><a href="../../">返回公告列表</a></li>
+        <li><a href="#part1">demo简介</a></li>
+        <li><a href="#part2">代码</a></li>
     </ul>
 </nav>
 
-<div id="text" style="text-align:left; position:absolute; left:35%; color: white;">
+<div id="background">
+<div id="text">
 
 <h2>【<b>发布</b>】小猿口算个位数比较示例程序代码</h2>
-2024/10/11
-<h3>demo简介</h3>
-<div id="content" style="background-color:#21222c; height:260px; width:700px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
+<p class="bodyfont">2024/10/11</p>
+<h3 id="part1">demo简介</h3>
+<div id="content" style="height:260px; width: 700px">
   <div style="width:670px; position:relative; left:15px; top:10px">
         &#12288;&#12288;本程序可自动化<<小猿口算>>APP中个位数比较练习的过程。<br>
         &#12288;&#12288;注意：本程序仅仅是示例程序，功能少且性能差。并且对使用条件有着非常严苛的要求，例如屏幕分辨率、手机投屏到电脑后窗口放置的位置等，程序并未对不同情况做出适配，因此不建议尝试运行该代码。<br>
@@ -163,8 +167,8 @@
   </div>
 </div>
 <br>
-<h3>代码</h3>
-<div id="content" style="height:4300px; width:700px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
+<h3 id="part2">代码</h3>
+<div id="content" style="height:4300px; width:700px;">
   <div style="width:690px; position:relative; left:5px; top:10px">
     <pre><code class="language-python">
 import easyocr
@@ -331,10 +335,11 @@ if __name__ == '__main__':
 
 
 </code></pre>
-  </div>
+ </div>
 </div>
 
-
+<br><br><br><br><br><br>
+</div>
 </div>
 
                 
@@ -343,17 +348,7 @@ if __name__ == '__main__':
 </div>
 </main>
 
-<footer class="md-footer" style="position:fixed; bottom:0; width:100%">
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-      <a href="https://usertshu.github.io/papersreplication.github.io/" rel="noopener">
-        智能基座论文复现组
-      </a>
-      </div>
-    </div>
-  </div>
-</footer>
+
     
 
 </body>

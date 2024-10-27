@@ -13,12 +13,13 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
       <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
       <link rel="stylesheet" href="../../../css/heimu.css">
+      <link rel="stylesheet" href="../../../css/font.css">
     
     <script>__md_scope=new URL("../../../",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 
   </head>
     
-<body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="red" style="background-color:#2e303e">  
+<body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="red" style="background-color:#f7f7f7">  
   <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
 
   <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
@@ -141,19 +142,23 @@
     <div class="md-content" data-md-component="content">
     <article class="md-content__inner md-typeset">
 
-<nav class="side-menu" style="position:fixed; color: white">
+<nav class="menu">
     <ul>
-        <li><a href="../../" style="color: white">返回公告列表</a></li>
+        <li><a href="../../">返回公告列表</a></li>
+        <li><a href="#part1">深度学习导言</a></li>
+        <li><a href="#part2">编程</a></li>
+        <li><a href="#part3">学习计划</a></li>
     </ul>
 </nav>
 
-<div id="text" style="text-align:left; position:absolute; left:35%; color: white;">
+<div id="background">
+<div id="text">
 
 <h2>【<b>总结</b>】技术部第一次交流会</h2>
-2024/10/20
-<h3>深度学习导言</h3>
-<div id="content" style="background-color:#21222c; height:3400px; width:630px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
-  <div style="width:600px; position:relative; left:15px">
+<p class="bodyfont">2024/10/20</p>
+<h3 id="part1">深度学习导言</h3>
+<div id="content" style="height: 3490px; width: 700px;">
+  <div style="width:670px; position:relative; left:15px">
     <p style="position:relative; top:10px">
       &#12288;&#12288;深度学习是当下最火的人工智能方法，在介绍深度学习之前，我们先回顾一下函数：<br>
       &#12288;&#12288;f(x)是一个函数，其将每一个自变量x映射为一个函数值y。但我们现在不要局限于曾经见到的函数，我们将x和y视为向量，即：<b>x</b> = (x1, x2, ..., xn)，<b>y</b> = (y1, y2, ..., yn)。例如：<b>x</b> = (x1, x2)，<b>y</b> = (y1, y2)，f(<b>x</b>) = (x1 * x2, x1 + x2)，则f(1, 2) = (2, 3)。这样我们就从一元函数扩展到了多元函数(多自变量函数)，且因变量也可能不止一维。<br>
@@ -172,8 +177,8 @@
     </p>
   </div>
 </div>
-<h3>编程</h3>
-<div id="content" style="background-color:#21222c; height:520px; width:700px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
+<h3 id="part2">编程</h3>
+<div id="content" style="height: 550px; width: 700px;">
   <div style="width:670px; position:relative; left:15px">
     <p style="position:relative; top:10px">
         &#12288;&#12288;18号到20号之间提交的代码评价在此处给出，不再发送针对每个同学的压缩包，出现以下问题的同学以后请注意：<br>
@@ -191,8 +196,8 @@
     </p>
   </div>
 </div>
-<h3 id="plan">学习计划</h3>
-<div id="content" style="background-color:#21222c; height:1100px; width:700px; color:#668cd1; font-size:large; font-family:宋体, monospace; text-align:left">
+<h3 id="part3">学习计划</h3>
+<div id="content" style="height: 1130px; width: 700px">
   <div style="width:670px; position:relative; left:15px">
     <p style="position:relative; top:10px">
         &#12288;&#12288;<img src="../../../files/技术部例会6.jpg" />
@@ -204,24 +209,13 @@
 
 <br><br><br><br><br><br><br>
 </div>
-
+</div>
                 
 </article>
 </div>
 </div>
 </main>
 
-<footer class="md-footer" style="position:fixed; bottom:0; width:100%">
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-      <a href="https://usertshu.github.io/papersreplication.github.io/" rel="noopener">
-        智能基座论文复现组
-      </a>
-      </div>
-    </div>
-  </div>
-</footer>
     
 
 </body>
